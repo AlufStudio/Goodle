@@ -156,6 +156,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.insert(TBL_KANDIDAT_RPK, null, cv);
 		db.close();
 	}
+	
+	public void addRiwayatRO(RiwayatROClass rro) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, rro.getID());
+		cv.put(KEY_ID_KANDIDAT, rro.getIDKandidat());
+		cv.put(KEY_RINGKASAN, rro.getRingkasan());
+		cv.put(KEY_JABATAN, rro.getJabatan());
+		cv.put(KEY_TANGGAL_MULAI, rro.getTahunMulai());
+		cv.put(KEY_TANGGAL_SELESAI, rro.getTahunSelesai());
+
+		db.insert(TBL_KANDIDAT_RO, null, cv);
+		db.close();
+	}
+	
+	public void addRiwayatPH(RiwayatPHClass rph) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, rph.getID());
+		cv.put(KEY_ID_KANDIDAT, rph.getIDKandidat());
+		cv.put(KEY_RINGKASAN, rph.getRingkasan());
+		cv.put(KEY_INSTITUSI, rph.getInstitusi());
+		cv.put(KEY_TANGGAL, rph.getTanggal());
+
+		db.insert(TBL_KANDIDAT_RPH, null, cv);
+		db.close();
+	}
 
 	public void deleteKandidat(KandidatClass kandidat) {
 		SQLiteDatabase db = getWritableDatabase();
@@ -178,6 +205,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		db.delete(TBL_KANDIDAT_RPK, KEY_ID + " = ? ",
 				new String[] { String.valueOf(rpp.getID()) });
+		db.close();
+	}
+	
+	public void deleteRiwayatRO(RiwayatROClass rro) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		db.delete(TBL_KANDIDAT_RO, KEY_ID + " = ? ",
+				new String[] { String.valueOf(rro.getID()) });
+		db.close();
+	}
+	
+	public void deleteRiwayatPH(RiwayatPHClass rph) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		db.delete(TBL_KANDIDAT_RPH, KEY_ID + " = ? ",
+				new String[] { String.valueOf(rph.getID()) });
 		db.close();
 	}
 
@@ -216,6 +259,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		return new RiwayatPPClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+	}
+	
+	public RiwayatROClass getRiwayatRO(int id) {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(TBL_KANDIDAT_RO, new String[] { KEY_ID, KEY_ID_KANDIDAT,
+				KEY_RINGKASAN, KEY_JABATAN, KEY_TANGGAL_MULAI, KEY_TANGGAL_SELESAI }, "ID = ?", new String[] { String.valueOf(id) },
+				null, null, null, null);
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		return new RiwayatROClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+	}
+	
+	public RiwayatPHClass getRiwayatPH(int id) {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(TBL_KANDIDAT_RPH, new String[] { KEY_ID, KEY_ID_KANDIDAT,
+				KEY_RINGKASAN, KEY_INSTITUSI, KEY_TANGGAL}, "ID = ?", new String[] { String.valueOf(id) },
+				null, null, null, null);
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		return new RiwayatPHClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
 	}
 
 	/**public ArrayList<ProfileClass> getSemuaProfile() {
@@ -294,6 +361,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		db.update(TBL_KANDIDAT_RPK, cv, "ID = ?",
 				new String[] { String.valueOf(rpp.getID()) });
+		db.close();
+	}
+	
+	public void updateRiwayatRO(RiwayatROClass rro) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, rro.getID());
+		cv.put(KEY_ID_KANDIDAT, rro.getIDKandidat());
+		cv.put(KEY_RINGKASAN, rro.getRingkasan());
+		cv.put(KEY_JABATAN, rro.getJabatan());
+		cv.put(KEY_TANGGAL_MULAI, rro.getTahunMulai());
+		cv.put(KEY_TANGGAL_SELESAI, rro.getTahunSelesai());
+
+		db.update(TBL_KANDIDAT_RO, cv, "ID = ?",
+				new String[] { String.valueOf(rro.getID()) });
+		db.close();
+	}
+	
+	public void updateRiwayatPH(RiwayatPHClass rph) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, rph.getID());
+		cv.put(KEY_ID_KANDIDAT, rph.getIDKandidat());
+		cv.put(KEY_RINGKASAN, rph.getRingkasan());
+		cv.put(KEY_INSTITUSI, rph.getInstitusi());
+		cv.put(KEY_TANGGAL, rph.getTanggal());
+
+		db.update(TBL_KANDIDAT_RPH, cv, "ID = ?",
+				new String[] { String.valueOf(rph.getID()) });
 		db.close();
 	}
 

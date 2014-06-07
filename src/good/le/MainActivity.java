@@ -1,6 +1,11 @@
 package good.le;
 
+import good.le.lib.DatabaseHandler;
 import good.le.lib.JSONParser;
+import good.le.lib.KandidatClass;
+import good.le.lib.RiwayatPHClass;
+import good.le.lib.RiwayatPPClass;
+import good.le.lib.RiwayatROClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,11 +18,13 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 	JSONParser jsonParser;
+	DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new DatabaseHandler(this);
     }
 
 
@@ -60,6 +67,9 @@ public class MainActivity extends Activity {
 					String nama_partai_caleg = partai.getString("nama");
 					String biografi_caleg = detail_caleg.getString("biografi");
 					
+					//Insert ke table kandidat
+					db.addKandidat(new KandidatClass(i, tahun_caleg, jumlah_anak_caleg, inisial_caleg, role_caleg, id_running_mate_caleg, jenis_kelamin_caleg, agama_caleg, tempat_lahir_caleg, tanggal_lahir_caleg, status_perkawinan_caleg, nama_pasangan_caleg, kelurahan_tinggal_caleg, kecamatan_tinggal_caleg, kab_kota_tinggal_caleg, provinsi_tinggal, nama_partai_caleg, biografi_caleg));
+					
 					//Get riwayat pendidikan
 					JSONArray riwayat_pendidikan = detail_caleg.getJSONArray("riwayat_pendidikan");
 					for(int j = 0;j < riwayat_pendidikan.length();j++){
@@ -67,7 +77,9 @@ public class MainActivity extends Activity {
 						String ringkasan_rpn_caleg = detail_riwayat_pendidikan.getString("ringkasan");
 						String tanggal_mulai_rpn_caleg = detail_riwayat_pendidikan.getString("tanggal_mulai");
 						String tanggal_selesai_rpn_caleg = detail_riwayat_pendidikan.getString("tanggal_selesai");
+						
 						//Insert ke table riwayat pendidikan
+						db.addRiwayatRPK(new RiwayatPPClass(j, i, ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
 					}
 					
 					//Get riwayat pekerjaan
@@ -77,7 +89,9 @@ public class MainActivity extends Activity {
 						String ringkasan_rpk_caleg = detail_riwayat_pekerjaan.getString("ringkasan");
 						String tanggal_mulai_rpk_caleg = detail_riwayat_pekerjaan.getString("tanggal_mulai");
 						String tanggal_selesai_rpk_caleg = detail_riwayat_pekerjaan.getString("tanggal_selesai");
+						
 						//Input ke table riwayat pekerjaan
+						db.addRiwayatRPN(new RiwayatPPClass(k, i, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
 					}
 					
 					//Get riwayat organisasi
@@ -88,7 +102,9 @@ public class MainActivity extends Activity {
 						String jabatan_ro_caleg = detail_riwayat_organisasi.getString("jabatan");
 						String tanggal_mulai_ro_caleg = detail_riwayat_organisasi.getString("tanggal_mulai");
 						String tanggal_selesai_ro_caleg = detail_riwayat_organisasi.getString("tanggal_selesai");
+						
 						//Input ke table riwayat organisasi
+						db.addRiwayatRO(new RiwayatROClass(l, i, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
 					}
 					
 					//Get riwayat penghargaan
@@ -98,7 +114,9 @@ public class MainActivity extends Activity {
 						String ringkasan_rph_caleg = detail_riwayat_penghargaan.getString("ringkasan");
 						String institusi_rph_caleg = detail_riwayat_penghargaan.getString("institusi");
 						String tanggal_rph_caleg = detail_riwayat_penghargaan.getString("tanggal");
+						
 						//Input ke table riwayat organisasi
+						db.addRiwayatPH(new RiwayatPHClass(m, i, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
 					}
 					
 					//Input ke table candidate

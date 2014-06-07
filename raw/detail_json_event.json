@@ -1,0 +1,64 @@
+{
+	"data":{
+		"results":{
+			"count":5,
+			"total":5,
+			"events":[
+			{
+				"id":"0001",
+				"id_calon":["jw","ps"],
+				"judul":"Debat Capres di SCTV",
+				"deskripsi":"Dua orang capres akan berdebat dalam acara yang diselenggarakan oleh salah satu Televisi Swasta yaitu SCTV",
+				"tanggal_mulai":"2014-06-09",
+				"waktu_mulai":"",
+				"tanggal_selesai":"2014-06-09",
+				"waktu_selesai":"",
+				"tags":["debat","capres","televisi"]
+			},
+			{
+				"id":"0003",
+				"id_calon":["jk","hr"],
+				"judul":"Debat Cawapres di Metro TV",
+				"deskripsi":"Dua orang cawapres akan berdebat dalam acara yang diselenggarakan oleh salah satu Televisi Swasta yaitu Metro TV",
+				"tanggal_mulai":"2014-06-15",
+				"waktu_mulai":"",
+				"tanggal_selesai":"2014-06-15",
+				"waktu_selesai":"",
+				"tags":["debat","televisi","cawapres"]
+			},
+			{
+				"id":"0002",
+				"id_calon":["jw","ps"],
+				"judul":"Debat Capres di TV One",
+				"deskripsi":"Dua orang capres akan berdebat dalam acara yang diselenggarakan oleh salah satu Televisi Swasta yaitu TV One",
+				"tanggal_mulai":"2014-06-22",
+				"waktu_mulai":"",
+				"tanggal_selesai":"2014-06-22",
+				"waktu_selesai":"",
+				"tags":["debat","capres","televisi"]
+			},
+			{
+				"id":"0004",
+				"id_calon":["jk","hr"],
+				"judul":"Debat Cawapres di RCTI",
+				"deskripsi":"Dua orang cawapres akan berdebat dalam acara yang diselenggarakan oleh salah satu Televisi Swasta yaitu RCTI",
+				"tanggal_mulai":"2014-06-27",
+				"waktu_mulai":"",
+				"tanggal_selesai":"2014-06-27",
+				"waktu_selesai":"",
+				"tags":["debat","televisi","cawapres"]
+			},
+			{
+				"id":"0005",
+				"id_calon":["jw","ps","jk","hr"],
+				"judul":"Debat Pasangan Capres dan Cawapres di Kompas TV dan TVRI",
+				"deskripsi":"Dua pasangan Capres dan Cawapres berdebat yang disiarkan langsung oleh Televisi Swasta dan Negeri yaitu Kompas TV dan TVRI",
+				"tanggal_mulai":"2014-07-05",
+				"waktu_mulai":"",
+				"tanggal_selesai":"2014-07-05",
+				"waktu_selesai":"",
+				"tags":["debat","capres","televisi","cawapres"]
+			}]
+		}
+	}
+}

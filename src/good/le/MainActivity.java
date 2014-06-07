@@ -111,4 +111,30 @@ public class MainActivity extends Activity {
     	
     }
     
+    class AmbilSemuaEvent extends AsyncTask<String, Integer, String>{
+
+		@Override
+		protected String doInBackground(String... arg0) {
+			// TODO Auto-generated method stub
+			try {
+				JSONObject json = jsonParser.getJSONFromUrl("http://api.pemiluapi.org/calonpresiden/api/events?apiKey=fea6f7d9ec0b31e256a673114792cb17");
+				JSONObject data = json.getJSONObject("data");
+				JSONObject results = data.getJSONObject("results");
+				JSONArray events = results.getJSONArray("events");
+				
+				for(int i = 0;i < events.length();i++){
+					JSONObject detail_events = events.getJSONObject(i);
+					JSONArray inisial_calon = detail_events.getJSONArray("id_calon");
+					for(int j = 0;j < inisial_calon.length();j++){
+						String inisial_calon_event = inisial_calon.getString(j);
+					}
+				}
+			} catch (JSONException e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+    	
+    }
+    
 }

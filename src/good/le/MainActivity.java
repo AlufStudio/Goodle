@@ -174,4 +174,74 @@ public class MainActivity extends Activity {
 
     }
     
+    class AmbilDataKeuangan extends AsyncTask<String, Integer, String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			try{
+				JSONObject json = jsonParser.getJSONFromUrl("http://api.pemiluapi.org/campaignfinance/api/contributions?apiKey=fea6f7d9ec0b31e256a673114792cb17");
+				JSONObject data = json.getJSONObject("data");
+				JSONObject results = data.getJSONObject("results");
+				JSONArray contributions = results.getJSONArray("contributions");
+				for(int i = 0;i < contributions.length();i++){
+					JSONObject detail_contributions = contributions.getJSONObject(i);
+					String periode_contributions = detail_contributions.getJSONArray("periode").toString();
+					String role_contributions = detail_contributions.getString("role");
+					String partai_contributions = detail_contributions.getString("partai");
+					String id_calon_contributions = detail_contributions.getString("id_calon");
+					String lembaga_contributions = detail_contributions.getString("lembaga");
+					int tahun_contributions = detail_contributions.getInt("tahun");
+					String mata_uang_contributions = detail_contributions.getString("mata_uang");
+					int uang_contributions = detail_contributions.getInt("uang");
+					int nilai_barang_contributions = detail_contributions.getInt("nilai_barang");
+					int unit_barang_contributions = detail_contributions.getInt("unit_barang");
+					int nilai_jasa_contributions = detail_contributions.getInt("nilai_jasa");
+					String bentuk_jasa_contributions = detail_contributions.getString("bentuk_jasa");
+					int jumlah_contributions = detail_contributions.getInt("jumlah");
+					String keterangan_contributions = detail_contributions.getString("keterangan");
+					
+					//Insert database
+				}
+			} catch (JSONException e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+    	
+    }
+    
+    class AmbilDataPelanggaran extends AsyncTask<String, Integer, String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			try {
+				JSONObject json = jsonParser.getJSONFromUrl("http://api.pemiluapi.org/laporan_pelanggaran/api/reports?apiKey=fea6f7d9ec0b31e256a673114792cb17");
+				JSONObject data = json.getJSONObject("data");
+				JSONObject results = data.getJSONObject("results");
+				JSONArray reports = results.getJSONArray("reports");
+				for(int i = 0; i < reports.length();i++){
+					JSONObject detail_reports = reports.getJSONObject(i);
+					String judul_laporan_reports = detail_reports.getString("judul_laporan");
+					String tanggal_kejadian_reports = detail_reports.getString("tanggal_kejadian");
+					String alamat_reports = detail_reports.getString("alamat");
+					String kelurahan_desa_reports = detail_reports.getString("kelurahan_desa");
+					String kecamatan_reports = detail_reports.getString("kecamatan");
+					String kab_kota_reports = detail_reports.getString("kab_kota");
+					String provinsi_reports = detail_reports.getString("provinsi");
+					String keterangan_reports = detail_reports.getString("keterangan");
+					String kategori_reports = detail_reports.getString("kategori");
+					String status_reports = detail_reports.getString("status");
+					String tags_reports = detail_reports.getString("tags");
+					
+					//Insert ke data pelanggaran
+				}
+			} catch (JSONException e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+    	
+    }
 }

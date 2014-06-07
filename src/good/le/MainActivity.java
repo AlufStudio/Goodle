@@ -142,4 +142,36 @@ public class MainActivity extends Activity {
     	
     }
     
+    class AmbilSemuaJanji extends AsyncTask<String, Integer, String>{
+
+		@Override
+		protected String doInBackground(String... arg0) {
+			// TODO Auto-generated method stub
+			try {
+				JSONObject json = jsonParser.getJSONFromUrl("http://api.pemiluapi.org/calonpresiden/api/promises?apiKey=fea6f7d9ec0b31e256a673114792cb17");
+				JSONObject data = json.getJSONObject("data");
+				JSONObject results = data.getJSONObject("results");
+				JSONArray promises = results.getJSONArray("promises");
+				
+				for(int i = 0;i < promises.length();i++){
+					JSONObject detail_promises = promises.getJSONObject(i);
+					String inisial_calon = detail_promises.getString("id_calon");
+					String context_janji = detail_promises.getString("context_janji");
+					String janji = detail_promises.getString("janji");
+					String tanggal = detail_promises.getString("tanggal");
+					String judul_sumber = detail_promises.getString("judul_sumber");
+					String url_sumber = detail_promises.getString("url_sumber");
+					String tags_janji = detail_promises.getJSONArray("tags").toString();
+					
+					//Input ke table promise
+				}
+				
+			} catch (JSONException e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+    }
+    
 }

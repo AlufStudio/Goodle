@@ -1,0 +1,18 @@
+{
+	"data":{
+		"results":{
+			"count":13,
+			"total":13,
+			"promises":[
+				{
+					"id":"0001",
+					"id_calon":"jw",
+					"context_janji":"Tetap akan mengawal pembangunan di Jakarta",
+					"janji":"Ya tentu saja akan mengawal, karena apa? Ini Jakarta menyangkut Jabodetabek, untuk transportasi Ini justru bisa mempercepat penyelesaian masalah-masalah yang ada",
+					"tanggal":"2014-03-24",
+					"judul_sumber":"merdeka.com",
+					"url_sumber":"https:\/\/id.berita.yahoo.com\/jika-jadi-presiden-jokowi-janji-tetap-benahi-jakarta-072751011.html",
+					"tags":["janji","jokowi","pembangunan jakarta"]
+				}
+		}
+	}

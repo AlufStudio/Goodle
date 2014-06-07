@@ -19,6 +19,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String TBL_KANDIDAT_RPK = "kandidat_rpk";
 	private static final String TBL_KANDIDAT_RO = "kandidat_ro";
 	private static final String TBL_KANDIDAT_RPH = "kandidat_rph";
+	private static final String TBL_EVENTS = "events";
 
 	// Global Column
 	private static final String KEY_ID = "id";
@@ -48,6 +49,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_PROVINSI = "provinsi";
 	private static final String KEY_NAMA_PARTAI = "nama_partai";
 	private static final String KEY_BIOGRAFI = "biografi";
+	
+	//Column for table Events
+	private static final String KEY_INISIAL_KANDIDAT = "inisial_kandidat";
+	private static final String KEY_JUDUL = "judul";
+	private static final String KEY_DESKRIPSI = "deskripsi";
+	private static final String KEY_WAKTU_MULAI = "waktu_mulai";
+	private static final String KEY_TAGS = "tags";
 
 	public DatabaseHandler(Context _context) {
 		super(_context, DB_NAME, null, DB_VERSION);
@@ -91,6 +99,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_RINGKASAN + " TEXT,"
 				+ KEY_INSTITUSI + " TEXT," + KEY_TANGGAL + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_RPH);
+		
+		String CREATE_TABLE_EVENTS = "CREATE TABLE " + TBL_EVENTS + "("
+				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_INISIAL_KANDIDAT + " TEXT,"
+				+ KEY_JUDUL + " TEXT," + KEY_DESKRIPSI + " TEXT," 
+				+ KEY_TANGGAL_MULAI + " TEXT," + KEY_WAKTU_MULAI + " TEXT," 
+				+ KEY_TANGGAL_SELESAI + " TEXT," + KEY_TAGS + " TEXT" + ")";
+		db.execSQL(CREATE_TABLE_EVENTS);
 	}
 
 	@Override
@@ -101,6 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TBL_KANDIDAT_RPK);
 		db.execSQL("DROP TABLE IF EXISTS " + TBL_KANDIDAT_RO);
 		db.execSQL("DROP TABLE IF EXISTS " + TBL_KANDIDAT_RPH);
+		db.execSQL("DROP TABLE IF EXISTS " + TBL_EVENTS);
 
 		onCreate(db);
 	}
@@ -183,6 +199,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.insert(TBL_KANDIDAT_RPH, null, cv);
 		db.close();
 	}
+	
+	public void addEvents(EventsClass events) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, events.getID());
+		cv.put(KEY_INISIAL_KANDIDAT, events.getInisialKandidat());
+		cv.put(KEY_JUDUL, events.getJudul());
+		cv.put(KEY_DESKRIPSI, events.getDeskripsi());
+		cv.put(KEY_TANGGAL_MULAI, events.getTanggalMulai());
+		cv.put(KEY_WAKTU_MULAI, events.getWaktuMulai());
+		cv.put(KEY_TANGGAL_SELESAI, events.getTanggalSelesai());
+		cv.put(KEY_TAGS, events.getTags());
+
+		db.insert(TBL_EVENTS, null, cv);
+		db.close();
+	}
 
 	public void deleteKandidat(KandidatClass kandidat) {
 		SQLiteDatabase db = getWritableDatabase();
@@ -221,6 +253,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		db.delete(TBL_KANDIDAT_RPH, KEY_ID + " = ? ",
 				new String[] { String.valueOf(rph.getID()) });
+		db.close();
+	}
+	
+	public void deleteEvents(EventsClass events) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		db.delete(TBL_EVENTS, KEY_ID + " = ? ",
+				new String[] { String.valueOf(events.getID())});
 		db.close();
 	}
 
@@ -283,6 +323,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		return new RiwayatPHClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+	}
+	
+	public EventsClass getEvents(int id) {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(TBL_EVENTS, new String[] { KEY_ID, KEY_INISIAL_KANDIDAT,
+				KEY_JUDUL, KEY_DESKRIPSI, KEY_TANGGAL_MULAI, KEY_WAKTU_MULAI, KEY_TANGGAL_SELESAI, KEY_TAGS}, "ID = ?", new String[] { String.valueOf(id) },
+				null, null, null, null);
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		return new EventsClass(Integer.valueOf(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
 	}
 
 	/**public ArrayList<ProfileClass> getSemuaProfile() {
@@ -390,6 +442,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		db.update(TBL_KANDIDAT_RPH, cv, "ID = ?",
 				new String[] { String.valueOf(rph.getID()) });
+		db.close();
+	}
+	
+	public void updateEvents(EventsClass events) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, events.getID());
+		cv.put(KEY_INISIAL_KANDIDAT, events.getInisialKandidat());
+		cv.put(KEY_JUDUL, events.getJudul());
+		cv.put(KEY_DESKRIPSI, events.getDeskripsi());
+		cv.put(KEY_TANGGAL_MULAI, events.getTanggalMulai());
+		cv.put(KEY_WAKTU_MULAI, events.getWaktuMulai());
+		cv.put(KEY_TANGGAL_SELESAI, events.getTanggalSelesai());
+		cv.put(KEY_TAGS, events.getTags());
+
+		db.update(TBL_EVENTS, cv, "ID = ?",
+				new String[] { String.valueOf(events.getID()) });
 		db.close();
 	}
 

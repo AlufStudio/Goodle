@@ -1,0 +1,357 @@
+{
+	"data":{
+		"results":{
+			"count":4,
+			"total":4,
+			"caleg":[{
+				"id":"hr",
+				"tahun":2014,
+				"nama":"Hatta Rajasa",
+				"role":"cawapres",
+				"id_running_mate":"ps",
+				"jenis_kelamin":"L",
+				"agama":"Islam",
+				"tempat_lahir":"Palembang",
+				"tanggal_lahir":"1953-12-18",
+				"status_perkawinan":"Kawin",
+				"nama_pasangan":"Oktiniwati Ulfadariah",
+				"jumlah_anak":4,
+				"kelurahan_tinggal":"",
+				"kecamatan_tinggal":"Cilandak",
+				"kab_kota_tinggal":"Jakarta Selatan",
+				"provinsi_tinggal":"DKI Jakarta",
+				"partai":{
+					"id":8,
+					"nama":"Partai Amanat Nasional"
+				},
+				"biografi":"Ir. M. Hatta Rajasa (lahir di Palembang, Sumatera Selatan, 18 Desember 1953; umur 60 tahun) adalah Menteri Koordinator Bidang Perekonomian Indonesia yang menjabat dari 22 Oktober 2009 hingga 13 Mei 2014. Sebelumnya ia pernah menjabat sebagai Menteri Sekretaris Negara (2007-2009), Menteri Perhubungan (2004-2007), dan Menteri Negara Riset dan Teknologi (2001-2004). Pada 19 Mei 2014, Hatta mendeklarasikan diri sebagai calon wakil presiden berpasangan dengan calon presiden Prabowo Subianto yang akan maju dalamPemilu 2014. Pasangan ini didukung oleh 6 partai politik yakni Partai Gerindra,PAN, PKS, PPP, PBB dan Partai Golkar.",
+				"riwayat_pendidikan":[
+				{
+					"id":16,
+					"ringkasan":"Teknik Perminyakan, ITB",
+					"tanggal_mulai":"1973",
+					"tanggal_selesai":"1980"
+				},
+				{
+					"id":17,
+					"ringkasan":"SMA Negeri 4, Palembang",
+					"tanggal_mulai":"1969",
+					"tanggal_selesai":"1971"
+				},
+				{
+					"id":18,
+					"ringkasan":"SMP Negeri 2, Palembang",
+					"tanggal_mulai":"1966",
+					"tanggal_selesai":"1969"
+				},
+				{
+					"id":19,
+					"ringkasan":"SD Negeri 65, Palembang",
+					"tanggal_mulai":"1959",
+					"tanggal_selesai":"1965"
+				}],
+				"riwayat_pekerjaan":[
+				{
+					"id":31,
+					"ringkasan":"Menteri Koordinator Bidang Perekonomian Republik Indonesia",
+					"tanggal_mulai":"2009",
+					"tanggal_selesai":"2014"
+				},
+				{
+					"id":32,
+					"ringkasan":"Menteri Sekretaris Negara Republik Indonesia",
+					"tanggal_mulai":"2007",
+					"tanggal_selesai":"2009"
+				},
+				{
+					"id":33,
+					"ringkasan":"Menteri Perhubungan Republik Indonesia",
+					"tanggal_mulai":"2004",
+					"tanggal_selesai":"2007"
+				},
+				{
+					"id":34,
+					"ringkasan":"Menteri Riset dan Teknologi Republik Indonesia",
+					"tanggal_mulai":"2001",
+					"tanggal_selesai":"2004"
+				},
+				{
+					"id":35,
+					"ringkasan":"Kepala Badan Pengkajian dan Penerapan Teknologi (BPPT)",
+					"tanggal_mulai":"2001",
+					"tanggal_selesai":"2004"
+				},
+				{
+					"id":36,
+					"ringkasan":"Ketua Harian Dewan Penerbangan dan Antariksa Nasional (DEPANRI)",
+					"tanggal_mulai":"2001",
+					"tanggal_selesai":"2004"
+				},
+				{
+					"id":37,
+					"ringkasan":"Wakil Ketua Harian DP KTI",
+					"tanggal_mulai":"2001",
+					"tanggal_selesai":"2004"
+				},
+				{
+					"id":38,
+					"ringkasan":"Anggota Dewan Maritim",
+					"tanggal_mulai":"2001",
+					"tanggal_selesai":"2004"
+				},
+				{
+					"id":39,
+					"ringkasan":"Anggota DPR\/MPR RI (Ketua Fraksi Reformasi)",
+					"tanggal_mulai":"1999",
+					"tanggal_selesai":"2001"
+				},
+				{
+					"id":40,
+					"ringkasan":"Anggota DPR\/MPR RI (Panitia AdHoc MPR RI)",
+					"tanggal_mulai":"1999",
+					"tanggal_selesai":"2001"
+				},
+				{
+					"id":41,
+					"ringkasan":"Direktur Utama PT Arthindo Group",
+					"tanggal_mulai":"1982",
+					"tanggal_selesai":"1999"
+				}],
+				"riwayat_organisasi":[
+				{
+					"id":24,
+					"ringkasan":"Masyarakat Agribisnis Indonesia",
+					"jabatan":"Ketua Dewan Masyarakat Agribisnis dan Agro Industri Indomesia (MAI)",
+					"tanggal_mulai":"2012",
+					"tanggal_selesai":"Sekarang"
+				},
+				{
+					"id":25,
+					"ringkasan":"Teknik Perminyakan, ITB",
+					"jabatan":"Anggota Dewan Penasehat Teknik Perminyakan Program Saijana ITB (TM-FTTM ITB)",
+					"tanggal_mulai":"2012",
+					"tanggal_selesai":"Sekarang"
+				},
+				{
+					"id":26,
+					"ringkasan":"Ikatan Auditor Teknologi Indonesia",
+					"jabatan":"Anggota Dewan Penasehat Ikatan Auditor Teknologi Indonesia (IATI)",
+					"tanggal_mulai":"2011",
+					"tanggal_selesai":"Sekarang"
+				},
+				{
+					"id":27,
+					"ringkasan":"Ikatan Ahli Teknik Perminyakan Indonesia",
+					"jabatan":"Anggota Dewan Penasehat Ikatan Ahli Teknik Perminyakan Indonesia (IATMI)",
+					"tanggal_mulai":"2010",
+					"tanggal_selesai":"Sekarang"
+				},
+				{
+					"id":28,
+					"ringkasan":"Persatuan Insinyur Indonesia",
+					"jabatan":"Ketua Dewan Penasehat PII",
+					"tanggal_mulai":"2012",
+					"tanggal_selesai":"2015"
+				},
+				{
+					"id":29,
+					"ringkasan":"Partai Amanat Nasional (PAN)",
+					"jabatan":"Ketua Partai Amanat Nasional",
+					"tanggal_mulai":"2010",
+					"tanggal_selesai":"Sekarang"
+				},
+				{
+					"id":30,
+					"ringkasan":"Partai Amanat Nasional (PAN)",
+					"jabatan":"Wakil Ketua Majelis Pertimbangan Partai Amanat Nasional",
+					"tanggal_mulai":"2005",
+					"tanggal_selesai":"2010"
+				},
+				{
+					"id":31,
+					"ringkasan":"Partai Amanat Nasional (PAN)",
+					"jabatan":"Sekretaris Jendral Partai Amanat Nasional (PAN)",
+					"tanggal_mulai":"2000",
+					"tanggal_selesai":"2005"
+				},
+				{
+					"id":32,
+					"ringkasan":"Ikatan Cendekiawan Muslim Indonesia (ICMI)",
+					"jabatan":"Ketua Dewan Pakar ICMI",
+					"tanggal_mulai":"2010",
+					"tanggal_selesai":"Sekarang"
+				},
+				{
+					"id":33,
+					"ringkasan":"Ikatan Cendekiawan Muslim Indonesia (ICMI)",
+					"jabatan":"Presidium ICMI",
+					"tanggal_mulai":"2007",
+					"tanggal_selesai":"2008"
+				},
+				{
+					"id":34,
+					"ringkasan":"Ikatan Cendekiawan Muslim Indonesia (ICMI)",
+					"jabatan":"Anggota Presidium ICMI",
+					"tanggal_mulai":"2005",
+					"tanggal_selesai":"2010"
+				},
+				{
+					"id":35,
+					"ringkasan":"Institut Teknologi Bandung (ITB)",
+					"jabatan":"Ketua Ikatan Alumni ITB",
+					"tanggal_mulai":"2007",
+					"tanggal_selesai":"2011"
+				},
+				{
+					"id":36,
+					"ringkasan":"Institut Teknologi Bandung (ITB)",
+					"jabatan":"Anggota Majelis Wali Amanat Institut Teknologi Bandung",
+					"tanggal_mulai":"2006",
+					"tanggal_selesai":"2011"
+				}],
+				"riwayat_penghargaan":[
+				{
+					"id":76,
+					"ringkasan":"Bintang Mahaputera Adipradana",
+					"institusi":"Pemerintah Republik Indonesia",
+					"tanggal":"2013"
+				},
+				{
+					"id":77,
+					"ringkasan":"Gwangwha Medal-The First Rank of the Order of Diplomatic Service Merit Republic of Korea",
+					"institusi":"Pemerintah Korea Selatan",
+					"tanggal":"2012"
+				},
+				{
+					"id":78,
+					"ringkasan":"Doctor Honoris Causa",
+					"institusi":"Universitas Pertanian Nitra Slovakia",
+					"tanggal":"2012"
+				},
+				{
+					"id":79,
+					"ringkasan":"Public Policy Award",
+					"institusi":"Asia Society USA",
+					"tanggal":"2011"
+				},
+				{
+					"id":80,
+					"ringkasan":"Perekayasa Utama Kehormatan (Honorary Principal Engineer)",
+					"institusi":"Badan pengkajian dan Penerapan Teknologi (BPPT)",
+					"tanggal":"2013"
+				},
+				{
+					"id":81,
+					"ringkasan":"Inisiator Pengembangan Kewirausahaan mahasiswa berbasis Teknologi (Technopreneur)",
+					"institusi":"Universitas Sebelas Maret",
+					"tanggal":"2014"
+				},
+				{
+					"id":82,
+					"ringkasan":"Inniatitive Achievement Award",
+					"institusi":"Asosiasi Logistik Nasional (ALI)",
+					"tanggal":"2014"
+				},
+				{
+					"id":83,
+					"ringkasan":"INSA Award",
+					"institusi":"Indonesian national Shipowners Association (INSA)",
+					"tanggal":"2014"
+				},
+				{
+					"id":84,
+					"ringkasan":"Most Inspirational - Minister",
+					"institusi":"Men\u0027s Obsession Awards",
+					"tanggal":"2014"
+				},
+				{
+					"id":85,
+					"ringkasan":"Medali Mahendrata",
+					"institusi":"Universitas Mahendrata",
+					"tanggal":"2014"
+				},
+				{
+					"id":86,
+					"ringkasan":"Economic Booster of The Year",
+					"institusi":"Indonesia Property \u0026 Bank",
+					"tanggal":"2013"
+				},
+				{
+					"id":87,
+					"ringkasan":"Reformasi Award",
+					"institusi":"Pro Democracy",
+					"tanggal":"2013"
+				},
+				{
+					"id":88,
+					"ringkasan":"The Rising Star\u0027s Men obsession Young Leader",
+					"institusi":"Men Obsession",
+					"tanggal":"2013"
+				},
+				{
+					"id":89,
+					"ringkasan":"Pemimpin Pembangunan Ekonomi Nasional",
+					"institusi":"Persatuan Wartaran Indonesia Cabang Jawa Timur",
+					"tanggal":"2013"
+				},
+				{
+					"id":90,
+					"ringkasan":"Tokoh Standarisasi Indonesia-Kategori Aparatur Pemerintah",
+					"institusi":"Badan Standarisasi Nasional (BSN)",
+					"tanggal":"2013"
+				},
+				{
+					"id":91,
+					"ringkasan":"Social Media Award 2013",
+					"institusi":"Majalah Marketing",
+					"tanggal":"2013"
+				},
+				{
+					"id":92,
+					"ringkasan":"Narasumber\/Pejabat Yang paling Mudah Dihubungi Wartawan",
+					"institusi":"Persatuan Wartawan Indonesia Jaya",
+					"tanggal":"2013"
+				},
+				{
+					"id":93,
+					"ringkasan":"Pemimpin Perubahan 2011",
+					"institusi":"Koran Republika",
+					"tanggal":"2012"
+				},
+				{
+					"id":94,
+					"ringkasan":"Ganesha Prajamanggala Bakti Kencana",
+					"institusi":"Institut Teknologi Bandung (ITB)",
+					"tanggal":"2011"
+				},{
+					"id":95,
+					"ringkasan":"CAFEO Distinguished Honorary Fellowship Award",
+					"institusi":"Persatuan Insiyur Indoneisa",
+					"tanggal":"2010"
+				},
+				{
+					"id":96,
+					"ringkasan":"Men Of The Year",
+					"institusi":"Majalah Globe",
+					"tanggal":"2010"
+				},
+				{
+					"id":97,
+					"ringkasan":"Charta Politika Award 2009",
+					"institusi":"Charta Politika",
+					"tanggal":"2010"
+				},
+				{
+					"id":98,
+					"ringkasan":"Ganesha Prajamanggala Bakti Adiutama",
+					"institusi":"Institut Teknologi Bandung (ITB)",
+					"tanggal":"2009"
+				},
+				{
+					"id":99,
+					"ringkasan":"10 Tokoh Parlemen Terbaik",
+					"institusi":"Jurnalis Parlemen",
+					"tanggal":"2010"
+				}
+			]
+		}

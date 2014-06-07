@@ -1,0 +1,21 @@
+JSONObject = data
+JSONObject = results
+JSONArray = caleg
+	Column (Table data diri calon):
+	id,inisial,tahun,nama,role,id_running_mate,jenis_kelamin,agama,tempat_lahir,tanggal_lahir,status_perkawinan,nama_pasangan,jumlah_anak,kelurahan_tinggal,kecamatan_tinggal,kab_kota_tinggal,provinsi_tinggal,biografi
+
+	Column (Table partai) :
+	id,id_calon,nama_partai
+
+	Column (Table riwayat pendidikan):
+	id,id_calon,ringkasan,tanggal_mulai,tanggal_selesai
+
+	Column (Table riwayat pekerjaan):
+	id,id_calon,ringkasan,tanggal_mulai,tanggal_selesai
+
+	Column (Table riwayat organisasi):
+	id,id_calon,ringkasan,jabatan,tanggal_mulai,tanggal_selesai
+
+	Column (Table riwayat penghargaan):
+	id,id_calon,ringkasan,institusi,tanggal
+

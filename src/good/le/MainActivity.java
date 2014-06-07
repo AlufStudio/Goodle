@@ -124,10 +124,15 @@ public class MainActivity extends Activity {
 				
 				for(int i = 0;i < events.length();i++){
 					JSONObject detail_events = events.getJSONObject(i);
-					JSONArray inisial_calon = detail_events.getJSONArray("id_calon");
-					for(int j = 0;j < inisial_calon.length();j++){
-						String inisial_calon_event = inisial_calon.getString(j);
-					}
+					String inisial_calon_event = detail_events.getJSONArray("id_calon").toString();
+					String judul_event = detail_events.getString("judul");
+					String deskripsi_event = detail_events.getString("deskripsi");
+					String tanggal_mulai_event = detail_events.getString("tanggal_mulai");
+					String waktu_mulai_event = detail_events.getString("waktu_mulai");
+					String tanggal_selesai_event = detail_events.getString("tanggal_selesai");
+					String tags_event = detail_events.getJSONArray("tags").toString();
+					
+					//Input ke table event
 				}
 			} catch (JSONException e){
 				e.printStackTrace();

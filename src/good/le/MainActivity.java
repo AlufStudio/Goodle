@@ -1,8 +1,11 @@
 package good.le;
 
 import good.le.lib.DatabaseHandler;
+import good.le.lib.EventsClass;
 import good.le.lib.JSONParser;
+import good.le.lib.JanjiClass;
 import good.le.lib.KandidatClass;
+import good.le.lib.KeuanganClass;
 import good.le.lib.RiwayatPHClass;
 import good.le.lib.RiwayatPPClass;
 import good.le.lib.RiwayatROClass;
@@ -151,6 +154,7 @@ public class MainActivity extends Activity {
 					String tags_event = detail_events.getJSONArray("tags").toString();
 					
 					//Input ke table event
+					db.addEvents(new EventsClass(i, inisial_calon_event, judul_event, deskripsi_event, tanggal_mulai_event, waktu_mulai_event, tanggal_selesai_event, tags_event));
 				}
 			} catch (JSONException e){
 				e.printStackTrace();
@@ -182,6 +186,7 @@ public class MainActivity extends Activity {
 					String tags_janji = detail_promises.getJSONArray("tags").toString();
 					
 					//Input ke table promise
+					db.addJanji(new JanjiClass(i, inisial_calon, context_janji, janji, tanggal, judul_sumber, url_sumber, tags_janji));
 				}
 				
 			} catch (JSONException e){
@@ -220,6 +225,7 @@ public class MainActivity extends Activity {
 					String keterangan_contributions = detail_contributions.getString("keterangan");
 					
 					//Insert database
+					db.addKeuangan(new KeuanganClass(i, tahun_contributions, uang_contributions, nilai_barang_contributions, unit_barang_contributions, nilai_jasa_contributions, jumlah_contributions, periode_contributions, role_contributions, partai_contributions, id_calon_contributions, lembaga_contributions, mata_uang_contributions, bentuk_jasa_contributions, keterangan_contributions));
 				}
 			} catch (JSONException e){
 				e.printStackTrace();

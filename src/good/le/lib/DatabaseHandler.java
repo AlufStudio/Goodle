@@ -20,6 +20,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String TBL_KANDIDAT_RO = "kandidat_ro";
 	private static final String TBL_KANDIDAT_RPH = "kandidat_rph";
 	private static final String TBL_EVENTS = "events";
+	private static final String TBL_JANJI = "janji";
+	private static final String TBL_KEUANGAN = "keuangan";
 
 	// Global Column
 	private static final String KEY_ID = "id";
@@ -56,6 +58,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_DESKRIPSI = "deskripsi";
 	private static final String KEY_WAKTU_MULAI = "waktu_mulai";
 	private static final String KEY_TAGS = "tags";
+	
+	//Colum for table Janji
+	private static final String KEY_CONTEXT_JANJI = "context_janji";
+	private static final String KEY_JANJI = "janji";
+	private static final String KEY_JUDUL_SUMBER = "judul_sumber";
+	private static final String KEY_URL_SUMBER = "url_sumber";
+	
+	//Column for table Keuangan
+	private static final String KEY_PERIODE = "periode";
+	private static final String KEY_LEMBAGA = "lembaga";
+	private static final String KEY_MATAUANG = "mata_uang";
+	private static final String KEY_UANG = "uang";
+	private static final String KEY_NILAIBARANG = "nilai_barang";
+	private static final String KEY_UNITBARANG = "unit_barang";
+	private static final String KEY_NILAIJASA = "nilai_jasa";
+	private static final String KEY_BENTUKJASA = "bentuk_jasa";
+	private static final String KEY_JUMLAH = "jumlah";
+	private static final String KEY_KETERANGAN = "keterangan";
 
 	public DatabaseHandler(Context _context) {
 		super(_context, DB_NAME, null, DB_VERSION);
@@ -106,6 +126,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_TANGGAL_MULAI + " TEXT," + KEY_WAKTU_MULAI + " TEXT," 
 				+ KEY_TANGGAL_SELESAI + " TEXT," + KEY_TAGS + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_EVENTS);
+		
+		String CREATE_TABLE_JANJI = "CREATE TABLE " + TBL_EVENTS + "("
+				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_INISIAL_KANDIDAT + " TEXT,"
+				+ KEY_CONTEXT_JANJI + " TEXT," + KEY_JANJI + " TEXT," 
+				+ KEY_TANGGAL + " TEXT," + KEY_JUDUL_SUMBER + " TEXT," 
+				+ KEY_URL_SUMBER + " TEXT," + KEY_TAGS + " TEXT" + ")";
+		db.execSQL(CREATE_TABLE_JANJI);
+		
+		String CREATE_TABLE_KEUANGAN = "CREATE TABLE " + TBL_KEUANGAN + "("
+				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_PERIODE + " TEXT,"
+				+ KEY_ROLE + " TEXT," + KEY_NAMA_PARTAI + " TEXT," 
+				+ KEY_INISIAL_KANDIDAT + " TEXT," + KEY_LEMBAGA + " TEXT,"
+				+ KEY_TAHUN + " INTEGER," + KEY_MATAUANG + " TEXT,"
+				+ KEY_UANG + " INTEGER," + KEY_NILAIBARANG + " INTEGER,"
+				+ KEY_UNITBARANG + " INTEGER," + KEY_NILAIJASA + " INTEGER,"
+				+ KEY_BENTUKJASA + " TEXT," + KEY_JUMLAH + " INTEGER,"
+				+ KEY_KETERANGAN + " TEXT" + ")";
+		db.execSQL(CREATE_TABLE_KEUANGAN);
 	}
 
 	@Override
@@ -117,6 +155,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TBL_KANDIDAT_RO);
 		db.execSQL("DROP TABLE IF EXISTS " + TBL_KANDIDAT_RPH);
 		db.execSQL("DROP TABLE IF EXISTS " + TBL_EVENTS);
+		db.execSQL("DROP TABLE IF EXISTS " + TBL_JANJI);
 
 		onCreate(db);
 	}
@@ -215,6 +254,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.insert(TBL_EVENTS, null, cv);
 		db.close();
 	}
+	
+	public void addJanji(JanjiClass janji) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, janji.getID());
+		cv.put(KEY_INISIAL_KANDIDAT, janji.getInisialKandidat());
+		cv.put(KEY_CONTEXT_JANJI, janji.getContextJanji());
+		cv.put(KEY_JANJI, janji.getJanji());
+		cv.put(KEY_TANGGAL, janji.getTanggal());
+		cv.put(KEY_JUDUL_SUMBER, janji.getJudulSumber());
+		cv.put(KEY_URL_SUMBER, janji.getUrlSumber());
+		cv.put(KEY_TAGS, janji.getTagsJanji());
+
+		db.insert(TBL_JANJI, null, cv);
+		db.close();
+	}
+	
+	public void addKeuangan(KeuanganClass uang) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, uang.getID());
+		cv.put(KEY_PERIODE, uang.getPeriode());
+		cv.put(KEY_ROLE, uang.getRole());
+		cv.put(KEY_NAMA_PARTAI, uang.getPartai());
+		cv.put(KEY_INISIAL_KANDIDAT, uang.getIDCalon());
+		cv.put(KEY_LEMBAGA, uang.getLembaga());
+		cv.put(KEY_TAHUN, uang.getTahun());
+		cv.put(KEY_MATAUANG, uang.getMataUang());
+		cv.put(KEY_UANG, uang.getUang());
+		cv.put(KEY_NILAIBARANG, uang.getNilaiBarang());
+		cv.put(KEY_UNITBARANG, uang.getUnitBarang());
+		cv.put(KEY_NILAIJASA, uang.getNilaiJasa());
+		cv.put(KEY_BENTUKJASA, uang.getBentukJasa());
+		cv.put(KEY_JUMLAH, uang.getJumlah());
+		cv.put(KEY_KETERANGAN, uang.getKeterangan());
+
+		db.insert(TBL_KEUANGAN, null,cv);
+		db.close();
+	}
 
 	public void deleteKandidat(KandidatClass kandidat) {
 		SQLiteDatabase db = getWritableDatabase();
@@ -261,6 +339,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		db.delete(TBL_EVENTS, KEY_ID + " = ? ",
 				new String[] { String.valueOf(events.getID())});
+		db.close();
+	}
+	
+	public void deleteJanji(JanjiClass janji) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		db.delete(TBL_JANJI, KEY_ID + " = ? ",
+				new String[] { String.valueOf(janji.getID())});
+		db.close();
+	}
+	
+	public void deleteKeuangan(KeuanganClass uang) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		db.delete(TBL_KEUANGAN, KEY_ID + " = ? ",
+				new String[] { String.valueOf(uang.getID())});
 		db.close();
 	}
 
@@ -335,6 +429,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		return new EventsClass(Integer.valueOf(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+	}
+	
+	public JanjiClass getJanji(int id) {
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor = db.query(TBL_JANJI, new String[] { KEY_ID, KEY_INISIAL_KANDIDAT,
+				KEY_CONTEXT_JANJI, KEY_JANJI, KEY_TANGGAL, KEY_JUDUL_SUMBER, KEY_URL_SUMBER, KEY_TAGS}, "ID = ?", new String[] { String.valueOf(id) },
+				null, null, null, null);
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		return new JanjiClass(Integer.valueOf(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+	}
+	
+	public KeuanganClass getKeuangan(int id) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.query(TBL_KEUANGAN, new String[] { KEY_ID, KEY_PERIODE, KEY_ROLE, KEY_NAMA_PARTAI, KEY_INISIAL_KANDIDAT, KEY_LEMBAGA,
+		KEY_TAHUN,KEY_MATAUANG, KEY_UANG, KEY_NILAIBARANG, KEY_UNITBARANG, KEY_NILAIJASA,
+		KEY_BENTUKJASA, KEY_JUMLAH,KEY_KETERANGAN}, "ID = ?", new String[] { String.valueOf(id) },
+				null, null, null, null);
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		return new KeuanganClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_TAHUN)), cursor.getInt(cursor.getColumnIndex(KEY_UANG)), cursor.getInt(cursor.getColumnIndex(KEY_NILAIBARANG)), cursor.getInt(cursor.getColumnIndex(KEY_UNITBARANG)), cursor.getInt(cursor.getColumnIndex(KEY_NILAIJASA)), cursor.getInt(cursor.getColumnIndex(KEY_JUMLAH)), cursor.getString(cursor.getColumnIndex(KEY_PERIODE)), cursor.getString(cursor.getColumnIndex(KEY_ROLE)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PARTAI)), cursor.getString(cursor.getColumnIndex(KEY_INISIAL_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_LEMBAGA)), cursor.getString(cursor.getColumnIndex(KEY_MATAUANG)), cursor.getString(cursor.getColumnIndex(KEY_BENTUKJASA)), cursor.getString(cursor.getColumnIndex(KEY_KETERANGAN)));
 	}
 
 	/**public ArrayList<ProfileClass> getSemuaProfile() {
@@ -459,6 +577,47 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		db.update(TBL_EVENTS, cv, "ID = ?",
 				new String[] { String.valueOf(events.getID()) });
+		db.close();
+	}
+	
+	public void updateJanji(JanjiClass janji) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, janji.getID());
+		cv.put(KEY_INISIAL_KANDIDAT, janji.getInisialKandidat());
+		cv.put(KEY_CONTEXT_JANJI, janji.getContextJanji());
+		cv.put(KEY_JANJI, janji.getJanji());
+		cv.put(KEY_TANGGAL, janji.getTanggal());
+		cv.put(KEY_JUDUL_SUMBER, janji.getJudulSumber());
+		cv.put(KEY_URL_SUMBER, janji.getUrlSumber());
+		cv.put(KEY_TAGS, janji.getTagsJanji());
+
+		db.update(TBL_JANJI, cv, "ID = ?",
+				new String[] { String.valueOf(janji.getID()) });
+		db.close();
+	}
+	
+	public void updateKeuangan(KeuanganClass uang) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, uang.getID());
+		cv.put(KEY_PERIODE, uang.getPeriode());
+		cv.put(KEY_ROLE, uang.getRole());
+		cv.put(KEY_NAMA_PARTAI, uang.getPartai());
+		cv.put(KEY_INISIAL_KANDIDAT, uang.getIDCalon());
+		cv.put(KEY_LEMBAGA, uang.getLembaga());
+		cv.put(KEY_TAHUN, uang.getTahun());
+		cv.put(KEY_MATAUANG, uang.getMataUang());
+		cv.put(KEY_UANG, uang.getUang());
+		cv.put(KEY_NILAIBARANG, uang.getNilaiBarang());
+		cv.put(KEY_UNITBARANG, uang.getUnitBarang());
+		cv.put(KEY_NILAIJASA, uang.getNilaiJasa());
+		cv.put(KEY_BENTUKJASA, uang.getBentukJasa());
+		cv.put(KEY_JUMLAH, uang.getJumlah());
+		cv.put(KEY_KETERANGAN, uang.getKeterangan());
+
+		db.update(TBL_KEUANGAN, cv, "ID = ?",
+				new String[] { String.valueOf(uang.getID()) });
 		db.close();
 	}
 

@@ -6,6 +6,7 @@ import good.le.lib.JSONParser;
 import good.le.lib.JanjiClass;
 import good.le.lib.KandidatClass;
 import good.le.lib.KeuanganClass;
+import good.le.lib.PelanggaranClass;
 import good.le.lib.RiwayatPHClass;
 import good.le.lib.RiwayatPPClass;
 import good.le.lib.RiwayatROClass;
@@ -38,6 +39,7 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    //Lihat semua Kandidatnya
     class AmbilSemuaKandidat extends AsyncTask<String, Integer, String>{
 
 		@Override
@@ -132,6 +134,7 @@ public class MainActivity extends Activity {
     	
     }
     
+    //Ambil semua acara / debat nya
     class AmbilSemuaEvent extends AsyncTask<String, Integer, String>{
 
 		@Override
@@ -164,6 +167,7 @@ public class MainActivity extends Activity {
     	
     }
     
+    //Ambil , simpan , dan Awasi janjinya
     class AmbilSemuaJanji extends AsyncTask<String, Integer, String>{
 
 		@Override
@@ -197,6 +201,7 @@ public class MainActivity extends Activity {
 
     }
     
+    //Lihat data keuangan dengan baik dan benar
     class AmbilDataKeuangan extends AsyncTask<String, Integer, String>{
 
 		@Override
@@ -235,6 +240,7 @@ public class MainActivity extends Activity {
     	
     }
     
+    //Jika terjadi pelanggaran , gantung dengan kabel LAN :D
     class AmbilDataPelanggaran extends AsyncTask<String, Integer, String>{
 
 		@Override
@@ -260,6 +266,7 @@ public class MainActivity extends Activity {
 					String tags_reports = detail_reports.getString("tags");
 					
 					//Insert ke data pelanggaran
+					db.addPelanggaran(new PelanggaranClass(i, judul_laporan_reports, tanggal_kejadian_reports, alamat_reports, kelurahan_desa_reports, kecamatan_reports, kab_kota_reports, provinsi_reports, keterangan_reports, kategori_reports, status_reports, tags_reports));
 				}
 			} catch (JSONException e){
 				e.printStackTrace();

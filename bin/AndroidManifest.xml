@@ -31,6 +31,10 @@
             android:name="good.le.HomeScreen"
             android:label="@string/title_activity_home_screen" >
         </activity>
+        <activity
+            android:name="good.le.DetailKandidat"
+            android:label="@string/title_activity_detail_kandidat" >
+        </activity>
     </application>
 
 </manifest>

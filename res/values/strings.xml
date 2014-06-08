@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_detail_kandidat">DetailKandidat</string>
 
 </resources>

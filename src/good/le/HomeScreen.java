@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -64,7 +65,7 @@ public class HomeScreen extends Activity {
 			try {
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("apiKey","bd9f0756d73496e3d38400012f03df1b"));
-				params.add(new BasicNameValuePair("limit","3"));
+				params.add(new BasicNameValuePair("limit","4"));
 				
 				JSONObject json = jsonParser.makeHttpRequest("http://api.pemiluapi.org/calonpresiden/api/caleg","GET",params);
 				JSONObject data = json.getJSONObject("data");
@@ -91,9 +92,6 @@ public class HomeScreen extends Activity {
 					JSONObject partai = detail_caleg.getJSONObject("partai");
 					String nama_partai_caleg = partai.getString("nama");
 					String biografi_caleg = detail_caleg.getString("biografi");
-					
-					//Insert ke table kandidat
-					db.addKandidat(new KandidatClass(tahun_caleg, jumlah_anak_caleg, inisial_caleg, role_caleg, id_running_mate_caleg, jenis_kelamin_caleg, agama_caleg, tempat_lahir_caleg, tanggal_lahir_caleg, status_perkawinan_caleg, nama_pasangan_caleg, kelurahan_tinggal_caleg, kecamatan_tinggal_caleg, kab_kota_tinggal_caleg, provinsi_tinggal, nama_partai_caleg, biografi_caleg));
 					
 					//Get riwayat pendidikan
 					JSONArray riwayat_pendidikan = detail_caleg.getJSONArray("riwayat_pendidikan");
@@ -145,6 +143,8 @@ public class HomeScreen extends Activity {
 					}
 					
 					//Input ke table candidate
+					//Insert ke table kandidat
+					db.addKandidat(new KandidatClass(tahun_caleg, jumlah_anak_caleg, inisial_caleg, role_caleg, id_running_mate_caleg, jenis_kelamin_caleg, agama_caleg, tempat_lahir_caleg, tanggal_lahir_caleg, status_perkawinan_caleg, nama_pasangan_caleg, kelurahan_tinggal_caleg, kecamatan_tinggal_caleg, kab_kota_tinggal_caleg, provinsi_tinggal, nama_partai_caleg, biografi_caleg));
 				}
 			} catch (JSONException e){
 				e.printStackTrace();

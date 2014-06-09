@@ -10,14 +10,14 @@ public class RiwayatPHClass {
 	
 	public RiwayatPHClass(int id,int id_kandidat,String ringkasan,String institusi,String tanggal){
 		this.id = id;
-		this.id = id_kandidat;
+		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.institusi = institusi;
 		this.tanggal = tanggal;
 	}
 	
 	public RiwayatPHClass(int id_kandidat,String ringkasan,String institusi,String tanggal){
-		this.id = id_kandidat;
+		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.institusi = institusi;
 		this.tanggal = tanggal;

@@ -10,14 +10,14 @@ public class RiwayatPPClass {
 	
 	public RiwayatPPClass(int id,int id_kandidat,String ringkasan,String tahun_mulai,String tahun_selesai){
 		this.id = id;
-		this.id = id_kandidat;
+		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.tahun_mulai = tahun_mulai;
 		this.tahun_selesai = tahun_selesai;
 	}
 	
 	public RiwayatPPClass(int id_kandidat,String ringkasan,String tahun_mulai,String tahun_selesai){
-		this.id = id_kandidat;
+		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.tahun_mulai = tahun_mulai;
 		this.tahun_selesai = tahun_selesai;

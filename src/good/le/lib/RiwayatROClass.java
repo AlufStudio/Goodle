@@ -10,7 +10,7 @@ public class RiwayatROClass {
 	
 	public RiwayatROClass(int id,int id_kandidat,String ringkasan,String jabatan,String tahun_mulai,String tahun_selesai){
 		this.id = id;
-		this.id = id_kandidat;
+		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.jabatan = jabatan;
 		this.tahun_mulai = tahun_mulai;
@@ -18,7 +18,7 @@ public class RiwayatROClass {
 	}
 	
 	public RiwayatROClass(int id_kandidat,String ringkasan,String jabatan,String tahun_mulai,String tahun_selesai){
-		this.id = id_kandidat;
+		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.jabatan = jabatan;
 		this.tahun_mulai = tahun_mulai;

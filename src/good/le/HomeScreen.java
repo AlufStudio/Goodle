@@ -64,6 +64,7 @@ public class HomeScreen extends Activity {
 			try {
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("apiKey","bd9f0756d73496e3d38400012f03df1b"));
+				params.add(new BasicNameValuePair("limit","3"));
 				
 				JSONObject json = jsonParser.makeHttpRequest("http://api.pemiluapi.org/calonpresiden/api/caleg","GET",params);
 				JSONObject data = json.getJSONObject("data");
@@ -92,7 +93,7 @@ public class HomeScreen extends Activity {
 					String biografi_caleg = detail_caleg.getString("biografi");
 					
 					//Insert ke table kandidat
-					db.addKandidat(new KandidatClass(i, tahun_caleg, jumlah_anak_caleg, inisial_caleg, role_caleg, id_running_mate_caleg, jenis_kelamin_caleg, agama_caleg, tempat_lahir_caleg, tanggal_lahir_caleg, status_perkawinan_caleg, nama_pasangan_caleg, kelurahan_tinggal_caleg, kecamatan_tinggal_caleg, kab_kota_tinggal_caleg, provinsi_tinggal, nama_partai_caleg, biografi_caleg));
+					db.addKandidat(new KandidatClass(tahun_caleg, jumlah_anak_caleg, inisial_caleg, role_caleg, id_running_mate_caleg, jenis_kelamin_caleg, agama_caleg, tempat_lahir_caleg, tanggal_lahir_caleg, status_perkawinan_caleg, nama_pasangan_caleg, kelurahan_tinggal_caleg, kecamatan_tinggal_caleg, kab_kota_tinggal_caleg, provinsi_tinggal, nama_partai_caleg, biografi_caleg));
 					
 					//Get riwayat pendidikan
 					JSONArray riwayat_pendidikan = detail_caleg.getJSONArray("riwayat_pendidikan");
@@ -103,7 +104,7 @@ public class HomeScreen extends Activity {
 						String tanggal_selesai_rpn_caleg = detail_riwayat_pendidikan.getString("tanggal_selesai");
 						
 						//Insert ke table riwayat pendidikan
-						db.addRiwayatRPK(new RiwayatPPClass(j, i, ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
+						db.addRiwayatRPK(new RiwayatPPClass(i,ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
 					}
 					
 					//Get riwayat pekerjaan
@@ -115,7 +116,7 @@ public class HomeScreen extends Activity {
 						String tanggal_selesai_rpk_caleg = detail_riwayat_pekerjaan.getString("tanggal_selesai");
 						
 						//Input ke table riwayat pekerjaan
-						db.addRiwayatRPN(new RiwayatPPClass(k, i, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
+						db.addRiwayatRPN(new RiwayatPPClass(i, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
 					}
 					
 					//Get riwayat organisasi
@@ -128,7 +129,7 @@ public class HomeScreen extends Activity {
 						String tanggal_selesai_ro_caleg = detail_riwayat_organisasi.getString("tanggal_selesai");
 						
 						//Input ke table riwayat organisasi
-						db.addRiwayatRO(new RiwayatROClass(l, i, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
+						db.addRiwayatRO(new RiwayatROClass(i, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
 					}
 					
 					//Get riwayat penghargaan
@@ -140,7 +141,7 @@ public class HomeScreen extends Activity {
 						String tanggal_rph_caleg = detail_riwayat_penghargaan.getString("tanggal");
 						
 						//Input ke table riwayat organisasi
-						db.addRiwayatPH(new RiwayatPHClass(m, i, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
+						db.addRiwayatPH(new RiwayatPHClass(i, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
 					}
 					
 					//Input ke table candidate

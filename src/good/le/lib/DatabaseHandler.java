@@ -123,7 +123,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TABLE_RO);
 
 		String CREATE_TABLE_RPH = "CREATE TABLE " + TBL_KANDIDAT_RPH + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_RINGKASAN + " TEXT,"
+				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_KANDIDAT
+				+ " INTEGER," + KEY_RINGKASAN + " TEXT,"
 				+ KEY_INSTITUSI + " TEXT," + KEY_TANGGAL + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_RPH);
 		
@@ -180,7 +181,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addKandidat(KandidatClass kandidat) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, kandidat.getID()); 
 		cv.put(KEY_INISIAL, kandidat.getInisial());
 		cv.put(KEY_TAHUN, kandidat.getTahun());
 		cv.put(KEY_ROLE, kandidat.getRole());
@@ -206,7 +206,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addRiwayatRPN(RiwayatPPClass rpp) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, rpp.getID());
 		cv.put(KEY_ID_KANDIDAT, rpp.getIDKandidat());
 		cv.put(KEY_RINGKASAN, rpp.getRingkasan());
 		cv.put(KEY_TANGGAL_MULAI, rpp.getTahunMulai());
@@ -219,7 +218,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addRiwayatRPK(RiwayatPPClass rpp) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, rpp.getID());
 		cv.put(KEY_ID_KANDIDAT, rpp.getIDKandidat());
 		cv.put(KEY_RINGKASAN, rpp.getRingkasan());
 		cv.put(KEY_TANGGAL_MULAI, rpp.getTahunMulai());
@@ -232,7 +230,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addRiwayatRO(RiwayatROClass rro) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, rro.getID());
 		cv.put(KEY_ID_KANDIDAT, rro.getIDKandidat());
 		cv.put(KEY_RINGKASAN, rro.getRingkasan());
 		cv.put(KEY_JABATAN, rro.getJabatan());
@@ -246,7 +243,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addRiwayatPH(RiwayatPHClass rph) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, rph.getID());
 		cv.put(KEY_ID_KANDIDAT, rph.getIDKandidat());
 		cv.put(KEY_RINGKASAN, rph.getRingkasan());
 		cv.put(KEY_INSTITUSI, rph.getInstitusi());

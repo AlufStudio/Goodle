@@ -1,14 +1,14 @@
 package good.le.lib;
 
 public class RiwayatPPClass {
-	int id,id_kandidat;
-	String ringkasan,tahun_mulai,tahun_selesai;
+	int id;
+	String id_kandidat,ringkasan,tahun_mulai,tahun_selesai;
 	
 	public RiwayatPPClass(){
 		
 	}
 	
-	public RiwayatPPClass(int id,int id_kandidat,String ringkasan,String tahun_mulai,String tahun_selesai){
+	public RiwayatPPClass(int id,String id_kandidat,String ringkasan,String tahun_mulai,String tahun_selesai){
 		this.id = id;
 		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
@@ -16,7 +16,7 @@ public class RiwayatPPClass {
 		this.tahun_selesai = tahun_selesai;
 	}
 	
-	public RiwayatPPClass(int id_kandidat,String ringkasan,String tahun_mulai,String tahun_selesai){
+	public RiwayatPPClass(String id_kandidat,String ringkasan,String tahun_mulai,String tahun_selesai){
 		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.tahun_mulai = tahun_mulai;
@@ -31,11 +31,11 @@ public class RiwayatPPClass {
 		this.id = id;
 	}
 	
-	public int getIDKandidat(){
+	public String getIDKandidat(){
 		return this.id_kandidat;
 	}
 	
-	public void setIDKandidat(int id_kandidat){
+	public void setIDKandidat(String id_kandidat){
 		this.id_kandidat = id_kandidat;
 	}
 	

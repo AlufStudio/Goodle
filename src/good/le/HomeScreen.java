@@ -19,14 +19,15 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
 public class HomeScreen extends Activity {
 	JSONParser jsonParser = new JSONParser();
+	ProgressDialog pDialog;
 	DatabaseHandler db;
 
 	@Override
@@ -58,6 +59,17 @@ public class HomeScreen extends Activity {
 	}
 	
 	class AmbilSemuaKandidat extends AsyncTask<String, Integer, String>{
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			pDialog = new ProgressDialog(HomeScreen.this);
+		    pDialog.setMessage("Collecting Data ...");
+		    pDialog.setIndeterminate(false);
+		    pDialog.setCancelable(true);
+		    pDialog.show();
+		}
 
 		@Override
 		protected String doInBackground(String... arg0) {
@@ -102,7 +114,7 @@ public class HomeScreen extends Activity {
 						String tanggal_selesai_rpn_caleg = detail_riwayat_pendidikan.getString("tanggal_selesai");
 						
 						//Insert ke table riwayat pendidikan
-						db.addRiwayatRPK(new RiwayatPPClass(i,ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
+						db.addRiwayatRPK(new RiwayatPPClass(inisial_caleg,ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
 					}
 					
 					//Get riwayat pekerjaan
@@ -114,7 +126,7 @@ public class HomeScreen extends Activity {
 						String tanggal_selesai_rpk_caleg = detail_riwayat_pekerjaan.getString("tanggal_selesai");
 						
 						//Input ke table riwayat pekerjaan
-						db.addRiwayatRPN(new RiwayatPPClass(i, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
+						db.addRiwayatRPN(new RiwayatPPClass(inisial_caleg, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
 					}
 					
 					//Get riwayat organisasi
@@ -127,7 +139,7 @@ public class HomeScreen extends Activity {
 						String tanggal_selesai_ro_caleg = detail_riwayat_organisasi.getString("tanggal_selesai");
 						
 						//Input ke table riwayat organisasi
-						db.addRiwayatRO(new RiwayatROClass(i, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
+						db.addRiwayatRO(new RiwayatROClass(inisial_caleg, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
 					}
 					
 					//Get riwayat penghargaan
@@ -139,7 +151,7 @@ public class HomeScreen extends Activity {
 						String tanggal_rph_caleg = detail_riwayat_penghargaan.getString("tanggal");
 						
 						//Input ke table riwayat organisasi
-						db.addRiwayatPH(new RiwayatPHClass(i, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
+						db.addRiwayatPH(new RiwayatPHClass(inisial_caleg, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
 					}
 					
 					//Input ke table candidate
@@ -151,6 +163,15 @@ public class HomeScreen extends Activity {
 			}
 			return null;
 		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			pDialog.dismiss();
+		}
+		
+		
     	
     }
 

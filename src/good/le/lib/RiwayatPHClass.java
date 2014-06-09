@@ -1,14 +1,14 @@
 package good.le.lib;
 
 public class RiwayatPHClass {
-	int id,id_kandidat;
-	String ringkasan,institusi,tanggal;
+	int id;
+	String id_kandidat,ringkasan,institusi,tanggal;
 	
 	public RiwayatPHClass(){
 		
 	}
 	
-	public RiwayatPHClass(int id,int id_kandidat,String ringkasan,String institusi,String tanggal){
+	public RiwayatPHClass(int id,String id_kandidat,String ringkasan,String institusi,String tanggal){
 		this.id = id;
 		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
@@ -16,7 +16,7 @@ public class RiwayatPHClass {
 		this.tanggal = tanggal;
 	}
 	
-	public RiwayatPHClass(int id_kandidat,String ringkasan,String institusi,String tanggal){
+	public RiwayatPHClass(String id_kandidat,String ringkasan,String institusi,String tanggal){
 		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.institusi = institusi;
@@ -31,11 +31,11 @@ public class RiwayatPHClass {
 		this.id = id;
 	}
 	
-	public int getIDKandidat(){
+	public String getIDKandidat(){
 		return this.id_kandidat;
 	}
 	
-	public void setIDKandidat(int id_kandidat){
+	public void setIDKandidat(String id_kandidat){
 		this.id_kandidat = id_kandidat;
 	}
 	

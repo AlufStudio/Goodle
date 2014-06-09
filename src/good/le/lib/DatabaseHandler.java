@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 	// Database Name
@@ -105,26 +106,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		String CREATE_TABLE_RPN = "CREATE TABLE " + TBL_KANDIDAT_RPN + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_KANDIDAT
-				+ " INTEGER," + KEY_RINGKASAN + " TEXT," + KEY_TANGGAL_MULAI
+				+ " TEXT," + KEY_RINGKASAN + " TEXT," + KEY_TANGGAL_MULAI
 				+ " TEXT," + KEY_TANGGAL_SELESAI + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_RPN);
 
 		String CREATE_TABLE_RPK = "CREATE TABLE " + TBL_KANDIDAT_RPK + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_KANDIDAT
-				+ " INTEGER," + KEY_RINGKASAN + " TEXT," + KEY_TANGGAL_MULAI
+				+ " TEXT," + KEY_RINGKASAN + " TEXT," + KEY_TANGGAL_MULAI
 				+ " TEXT," + KEY_TANGGAL_SELESAI + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_RPK);
 
 		String CREATE_TABLE_RO = "CREATE TABLE " + TBL_KANDIDAT_RO + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_KANDIDAT
-				+ " INTEGER," + KEY_RINGKASAN + " TEXT," + KEY_JABATAN
+				+ " TEXT," + KEY_RINGKASAN + " TEXT," + KEY_JABATAN
 				+ " TEXT," + KEY_TANGGAL_MULAI + " TEXT," + KEY_TANGGAL_SELESAI
 				+ " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_RO);
 
 		String CREATE_TABLE_RPH = "CREATE TABLE " + TBL_KANDIDAT_RPH + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_ID_KANDIDAT
-				+ " INTEGER," + KEY_RINGKASAN + " TEXT,"
+				+ " TEXT," + KEY_RINGKASAN + " TEXT,"
 				+ KEY_INSTITUSI + " TEXT," + KEY_TANGGAL + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_RPH);
 		
@@ -399,16 +400,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	public KandidatClass getKandidat(int id) {
+	public KandidatClass getKandidat(String _id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID, KEY_INISIAL,
-				KEY_TAHUN, KEY_ROLE, KEY_RUNNING_MATE, KEY_JENIS_KELAMIN, KEY_AGAMA, KEY_TEMPAT_LAHIR, KEY_TANGGAL_LAHIR, KEY_STATUS_KAWIN, KEY_NAMA_PASANGAN, KEY_JUMLAH_ANAK, KEY_KELURAHAN_TINGGAL, KEY_KECAMATAN, KEY_KOTA_TINGGAL, KEY_PROVINSI, KEY_NAMA_PARTAI, KEY_BIOGRAFI }, 
-				"ID = ?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID,KEY_TAHUN, KEY_JUMLAH_ANAK, KEY_INISIAL,
+				 KEY_ROLE, KEY_RUNNING_MATE, KEY_JENIS_KELAMIN, KEY_AGAMA, KEY_TEMPAT_LAHIR, KEY_TANGGAL_LAHIR, KEY_STATUS_KAWIN, KEY_NAMA_PASANGAN, KEY_KELURAHAN_TINGGAL, KEY_KECAMATAN, KEY_KOTA_TINGGAL, KEY_PROVINSI, KEY_NAMA_PARTAI, KEY_BIOGRAFI }, 
+				KEY_INISIAL + " = ?",
+				new String[] { _id }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
-
+			Log.d("CURSOR", cursor.getString(cursor.getColumnIndex(KEY_INISIAL)));
 		//return new KandidatClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), Integer.valueOf(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16), cursor.getString(17));
 		return new KandidatClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_TAHUN)), cursor.getInt(cursor.getColumnIndex(KEY_JUMLAH_ANAK)), cursor.getString(cursor.getColumnIndex(KEY_INISIAL)), cursor.getString(cursor.getColumnIndex(KEY_ROLE)), cursor.getString(cursor.getColumnIndex(KEY_RUNNING_MATE)), cursor.getString(cursor.getColumnIndex(KEY_JENIS_KELAMIN)), cursor.getString(cursor.getColumnIndex(KEY_AGAMA)), cursor.getString(cursor.getColumnIndex(KEY_TEMPAT_LAHIR)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_LAHIR)), cursor.getString(cursor.getColumnIndex(KEY_STATUS_KAWIN)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PASANGAN)), cursor.getString(cursor.getColumnIndex(KEY_KELURAHAN_TINGGAL)), cursor.getString(cursor.getColumnIndex(KEY_KECAMATAN)), cursor.getString(cursor.getColumnIndex(KEY_KOTA)), cursor.getString(cursor.getColumnIndex(KEY_PROVINSI)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PARTAI)), cursor.getString(cursor.getColumnIndex(KEY_BIOGRAFI)));
 	}
@@ -423,7 +424,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		//return new RiwayatPPClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-		return new RiwayatPPClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
+		return new RiwayatPPClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
 	}
 	
 	public RiwayatPPClass getRiwayatRPK(int id) {
@@ -436,7 +437,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		//return new RiwayatPPClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-		return new RiwayatPPClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
+		return new RiwayatPPClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
 	}
 	
 	public RiwayatROClass getRiwayatRO(int id) {
@@ -449,7 +450,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		//return new RiwayatROClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
-		return new RiwayatROClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_JABATAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
+		return new RiwayatROClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_JABATAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
 	}
 	
 	public RiwayatPHClass getRiwayatPH(int id) {
@@ -462,7 +463,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		//return new RiwayatPHClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-		return new RiwayatPHClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_INSTITUSI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL)));
+		return new RiwayatPHClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_INSTITUSI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL)));
 	}
 	
 	public EventsClass getEvents(int id) {
@@ -703,24 +704,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	/**public boolean parkirExists(Integer _id) {
+	public boolean kandidatExists(Integer _id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TBL_ITEM, new String[] { KEY_ID }, "ID = ?",
+		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID }, "ID = ?",
 				new String[] { String.valueOf(_id) }, null, null, null, null);
 		boolean exists = (cursor.getCount() > 0);
 		cursor.close();
 		return exists;
 	}
 
-	public boolean profileExists(Integer _id) {
+	public boolean RiwayatRPNExists(Integer _id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TBL_PROFILE, new String[] { KEY_ID },
+		Cursor cursor = db.query(TBL_KANDIDAT_RPN, new String[] { KEY_ID },
 				"ID = ?", new String[] { String.valueOf(_id) }, null, null,
 				null, null);
 		boolean exists = (cursor.getCount() > 0);
 		cursor.close();
 		return exists;
-	}**/
+	}
 }

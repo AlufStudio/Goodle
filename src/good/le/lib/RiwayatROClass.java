@@ -1,14 +1,14 @@
 package good.le.lib;
 
 public class RiwayatROClass {
-	int id,id_kandidat;
-	String ringkasan,jabatan,tahun_mulai,tahun_selesai;
+	int id;
+	String id_kandidat,ringkasan,jabatan,tahun_mulai,tahun_selesai;
 	
 	public RiwayatROClass(){
 		
 	}
 	
-	public RiwayatROClass(int id,int id_kandidat,String ringkasan,String jabatan,String tahun_mulai,String tahun_selesai){
+	public RiwayatROClass(int id,String id_kandidat,String ringkasan,String jabatan,String tahun_mulai,String tahun_selesai){
 		this.id = id;
 		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
@@ -17,7 +17,7 @@ public class RiwayatROClass {
 		this.tahun_selesai = tahun_selesai;
 	}
 	
-	public RiwayatROClass(int id_kandidat,String ringkasan,String jabatan,String tahun_mulai,String tahun_selesai){
+	public RiwayatROClass(String id_kandidat,String ringkasan,String jabatan,String tahun_mulai,String tahun_selesai){
 		this.id_kandidat = id_kandidat;
 		this.ringkasan = ringkasan;
 		this.jabatan = jabatan;
@@ -33,11 +33,11 @@ public class RiwayatROClass {
 		this.id = id;
 	}
 	
-	public int getIDKandidat(){
+	public String getIDKandidat(){
 		return this.id_kandidat;
 	}
 	
-	public void setIDKandidat(int id_kandidat){
+	public void setIDKandidat(String id_kandidat){
 		this.id_kandidat = id_kandidat;
 	}
 	

@@ -134,7 +134,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_TANGGAL_SELESAI + " TEXT," + KEY_TAGS + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_EVENTS);
 		
-		String CREATE_TABLE_JANJI = "CREATE TABLE " + TBL_EVENTS + "("
+		String CREATE_TABLE_JANJI = "CREATE TABLE " + TBL_JANJI + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_INISIAL_KANDIDAT + " TEXT,"
 				+ KEY_CONTEXT_JANJI + " TEXT," + KEY_JANJI + " TEXT," 
 				+ KEY_TANGGAL + " TEXT," + KEY_JUDUL_SUMBER + " TEXT," 
@@ -152,7 +152,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ KEY_KETERANGAN + " TEXT" + ")";
 		db.execSQL(CREATE_TABLE_KEUANGAN);
 		
-		String CREATE_TABLE_PELANGGARAN = "CREATE TABLE " + TBL_KEUANGAN + "("
+		String CREATE_TABLE_PELANGGARAN = "CREATE TABLE " + TBL_PELANGGARAN + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_JUDUL + " TEXT,"
 				+ KEY_TANGGAL + " TEXT," + KEY_ALAMAT + " TEXT," 
 				+ KEY_KELURAHAN_TINGGAL + " TEXT," + KEY_KECAMATAN + " TEXT,"

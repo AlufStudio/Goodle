@@ -1,15 +1,10 @@
 package good.le;
 
 import good.le.lib.DatabaseHandler;
-import good.le.lib.EventsClass;
 import good.le.lib.JSONParser;
 import good.le.lib.JanjiClass;
-import good.le.lib.KandidatClass;
 import good.le.lib.KeuanganClass;
 import good.le.lib.PelanggaranClass;
-import good.le.lib.RiwayatPHClass;
-import good.le.lib.RiwayatPKClass;
-import good.le.lib.RiwayatROClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;

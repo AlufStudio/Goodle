@@ -19,7 +19,6 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.app.Activity;
@@ -98,7 +97,7 @@ public class SplashScreen extends Activity {
 							//Insert ke table riwayat pendidikan
 							db.addRiwayatRPN(new RiwayatPNClass(inisial_caleg,ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
 						}
-					} else {
+					} else if(db.getTableCounts("kandidat_rpn",inisial_caleg) < riwayat_pendidikan.length()){
 						for(int j = db.getTableCounts("kandidat_rpk",inisial_caleg);j < riwayat_pendidikan.length();j++){
 							JSONObject detail_riwayat_pendidikan = riwayat_pendidikan.getJSONObject(j);
 							String ringkasan_rpn_caleg = detail_riwayat_pendidikan.getString("ringkasan");
@@ -108,6 +107,8 @@ public class SplashScreen extends Activity {
 							//Insert ke table riwayat pendidikan
 							db.addRiwayatRPN(new RiwayatPNClass(inisial_caleg,ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
 						}
+					} else {
+						//pass
 					}
 					
 					//Get riwayat pekerjaan
@@ -122,7 +123,7 @@ public class SplashScreen extends Activity {
 							//Input ke table riwayat pekerjaan
 							db.addRiwayatRPK(new RiwayatPKClass(inisial_caleg, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
 						}
-					} else {
+					} else if(db.getTableCounts("kandidat_rpk",inisial_caleg) < riwayat_pekerjaan.length()){
 						for(int k = db.getTableCounts("kandidat_rpk",inisial_caleg);k < riwayat_pekerjaan.length();k++){
 							JSONObject detail_riwayat_pekerjaan = riwayat_pekerjaan.getJSONObject(k);
 							String ringkasan_rpk_caleg = detail_riwayat_pekerjaan.getString("ringkasan");
@@ -132,6 +133,8 @@ public class SplashScreen extends Activity {
 							//Input ke table riwayat pekerjaan
 							db.addRiwayatRPK(new RiwayatPKClass(inisial_caleg, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
 						}
+					} else {
+						//pass
 					}
 					
 					//Get riwayat organisasi
@@ -147,7 +150,7 @@ public class SplashScreen extends Activity {
 							//Input ke table riwayat organisasi
 							db.addRiwayatRO(new RiwayatROClass(inisial_caleg, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
 						}
-					} else {
+					} else if(db.getTableCounts("kandidat_ro",inisial_caleg) < riwayat_organisasi.length()){
 						for(int l = db.getTableCounts("kandidat_ro",inisial_caleg);l < riwayat_organisasi.length();l++){
 							JSONObject detail_riwayat_organisasi = riwayat_organisasi.getJSONObject(l);
 							String ringkasan_ro_caleg = detail_riwayat_organisasi.getString("ringkasan");
@@ -158,6 +161,8 @@ public class SplashScreen extends Activity {
 							//Input ke table riwayat organisasi
 							db.addRiwayatRO(new RiwayatROClass(inisial_caleg, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
 						}
+					} else {
+						//pass
 					}
 					
 					//Get riwayat penghargaan
@@ -172,7 +177,7 @@ public class SplashScreen extends Activity {
 							//Input ke table riwayat organisasi
 							db.addRiwayatPH(new RiwayatPHClass(inisial_caleg, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
 						}
-					} else {
+					} else if(db.getTableCounts("kandidat_rph",inisial_caleg) < riwayat_penghargaan.length()){
 						for(int m = db.getTableCounts("kandidat_rph",inisial_caleg);m < riwayat_penghargaan.length();m++){
 							JSONObject detail_riwayat_penghargaan = riwayat_penghargaan.getJSONObject(m);
 							String ringkasan_rph_caleg = detail_riwayat_penghargaan.getString("ringkasan");
@@ -182,9 +187,10 @@ public class SplashScreen extends Activity {
 							//Input ke table riwayat organisasi
 							db.addRiwayatPH(new RiwayatPHClass(inisial_caleg, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
 						}
+					} else {
+						//pass
 					}
 					
-					//Input ke table candidate
 					//Insert ke table kandidat
 					if(db.kandidatExists(inisial_caleg)){
 						db.updateKandidat(new KandidatClass(tahun_caleg, jumlah_anak_caleg, nama,inisial_caleg, role_caleg, id_running_mate_caleg, jenis_kelamin_caleg, agama_caleg, tempat_lahir_caleg, tanggal_lahir_caleg, status_perkawinan_caleg, nama_pasangan_caleg, kelurahan_tinggal_caleg, kecamatan_tinggal_caleg, kab_kota_tinggal_caleg, provinsi_tinggal, nama_partai_caleg, biografi_caleg));

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.app.Activity;
@@ -87,7 +88,7 @@ public class SplashScreen extends Activity {
 					
 					//Get riwayat pendidikan
 					JSONArray riwayat_pendidikan = detail_caleg.getJSONArray("riwayat_pendidikan");
-					if(db.getTableCounts("kandidat_rpk") != riwayat_pendidikan.length()){
+					if(db.getTableCounts("kandidat_rpk",inisial_caleg) != riwayat_pendidikan.length()){
 						for(int j = 0;j < riwayat_pendidikan.length();j++){
 							JSONObject detail_riwayat_pendidikan = riwayat_pendidikan.getJSONObject(j);
 							String ringkasan_rpn_caleg = detail_riwayat_pendidikan.getString("ringkasan");
@@ -98,7 +99,7 @@ public class SplashScreen extends Activity {
 							db.addRiwayatRPN(new RiwayatPNClass(inisial_caleg,ringkasan_rpn_caleg, tanggal_mulai_rpn_caleg, tanggal_selesai_rpn_caleg));
 						}
 					} else {
-						for(int j = db.getTableCounts("kandidat_rpk");j < riwayat_pendidikan.length();j++){
+						for(int j = db.getTableCounts("kandidat_rpk",inisial_caleg);j < riwayat_pendidikan.length();j++){
 							JSONObject detail_riwayat_pendidikan = riwayat_pendidikan.getJSONObject(j);
 							String ringkasan_rpn_caleg = detail_riwayat_pendidikan.getString("ringkasan");
 							String tanggal_mulai_rpn_caleg = detail_riwayat_pendidikan.getString("tanggal_mulai");
@@ -111,7 +112,7 @@ public class SplashScreen extends Activity {
 					
 					//Get riwayat pekerjaan
 					JSONArray riwayat_pekerjaan = detail_caleg.getJSONArray("riwayat_pekerjaan");
-					if(db.getTableCounts("kandidat_rpk") != riwayat_pekerjaan.length()){
+					if(db.getTableCounts("kandidat_rpk",inisial_caleg) != riwayat_pekerjaan.length()){
 						for(int k = 0;k < riwayat_pekerjaan.length();k++){
 							JSONObject detail_riwayat_pekerjaan = riwayat_pekerjaan.getJSONObject(k);
 							String ringkasan_rpk_caleg = detail_riwayat_pekerjaan.getString("ringkasan");
@@ -122,7 +123,7 @@ public class SplashScreen extends Activity {
 							db.addRiwayatRPK(new RiwayatPKClass(inisial_caleg, ringkasan_rpk_caleg, tanggal_mulai_rpk_caleg, tanggal_selesai_rpk_caleg));
 						}
 					} else {
-						for(int k = db.getTableCounts("kandidat_rpk");k < riwayat_pekerjaan.length();k++){
+						for(int k = db.getTableCounts("kandidat_rpk",inisial_caleg);k < riwayat_pekerjaan.length();k++){
 							JSONObject detail_riwayat_pekerjaan = riwayat_pekerjaan.getJSONObject(k);
 							String ringkasan_rpk_caleg = detail_riwayat_pekerjaan.getString("ringkasan");
 							String tanggal_mulai_rpk_caleg = detail_riwayat_pekerjaan.getString("tanggal_mulai");
@@ -135,7 +136,7 @@ public class SplashScreen extends Activity {
 					
 					//Get riwayat organisasi
 					JSONArray riwayat_organisasi = detail_caleg.getJSONArray("riwayat_organisasi");
-					if(db.getTableCounts("kandidat_ro") != riwayat_organisasi.length()){
+					if(db.getTableCounts("kandidat_ro",inisial_caleg) != riwayat_organisasi.length()){
 						for(int l = 0;l < riwayat_organisasi.length();l++){
 							JSONObject detail_riwayat_organisasi = riwayat_organisasi.getJSONObject(l);
 							String ringkasan_ro_caleg = detail_riwayat_organisasi.getString("ringkasan");
@@ -147,7 +148,7 @@ public class SplashScreen extends Activity {
 							db.addRiwayatRO(new RiwayatROClass(inisial_caleg, ringkasan_ro_caleg, jabatan_ro_caleg, tanggal_mulai_ro_caleg, tanggal_selesai_ro_caleg));
 						}
 					} else {
-						for(int l = db.getTableCounts("kandidat_ro");l < riwayat_organisasi.length();l++){
+						for(int l = db.getTableCounts("kandidat_ro",inisial_caleg);l < riwayat_organisasi.length();l++){
 							JSONObject detail_riwayat_organisasi = riwayat_organisasi.getJSONObject(l);
 							String ringkasan_ro_caleg = detail_riwayat_organisasi.getString("ringkasan");
 							String jabatan_ro_caleg = detail_riwayat_organisasi.getString("jabatan");
@@ -161,7 +162,7 @@ public class SplashScreen extends Activity {
 					
 					//Get riwayat penghargaan
 					JSONArray riwayat_penghargaan = detail_caleg.getJSONArray("riwayat_penghargaan");
-					if(db.getTableCounts("kandidat_rph") != riwayat_penghargaan.length()){
+					if(db.getTableCounts("kandidat_rph",inisial_caleg) != riwayat_penghargaan.length()){
 						for(int m = 0;m < riwayat_penghargaan.length();m++){
 							JSONObject detail_riwayat_penghargaan = riwayat_penghargaan.getJSONObject(m);
 							String ringkasan_rph_caleg = detail_riwayat_penghargaan.getString("ringkasan");
@@ -172,7 +173,7 @@ public class SplashScreen extends Activity {
 							db.addRiwayatPH(new RiwayatPHClass(inisial_caleg, ringkasan_rph_caleg, institusi_rph_caleg, tanggal_rph_caleg));
 						}
 					} else {
-						for(int m = db.getTableCounts("kandidat_rph");m < riwayat_penghargaan.length();m++){
+						for(int m = db.getTableCounts("kandidat_rph",inisial_caleg);m < riwayat_penghargaan.length();m++){
 							JSONObject detail_riwayat_penghargaan = riwayat_penghargaan.getJSONObject(m);
 							String ringkasan_rph_caleg = detail_riwayat_penghargaan.getString("ringkasan");
 							String institusi_rph_caleg = detail_riwayat_penghargaan.getString("institusi");

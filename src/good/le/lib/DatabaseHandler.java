@@ -803,8 +803,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		return exists;
 	}
 	
-	public int getTableCounts(String table) {
-        String countQuery = "SELECT  * FROM " + table;
+	public int getTableCounts(String table,String inisial) {
+        String countQuery = "SELECT  * FROM " + table + " WHERE " + KEY_ID_KANDIDAT + " = '" + inisial + "'" ;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();

@@ -1,5 +1,8 @@
 package good.le.lib;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -36,6 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_INSTITUSI = "institusi";
 
 	// Column Table Kandidat
+	private static final String KEY_NAMA = "nama";
 	private static final String KEY_INISIAL = "inisial";
 	private static final String KEY_TAHUN = "tahun";
 	private static final String KEY_ROLE = "role";
@@ -93,7 +97,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String CREATE_TABLE_KANDIDAT = "CREATE TABLE " + TBL_KANDIDAT + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_INISIAL + " TEXT,"
+				+ KEY_ID + " INTEGER PRIMARY KEY," 
+				+ KEY_NAMA + " TEXT," + KEY_INISIAL + " TEXT,"
 				+ KEY_TAHUN + " INTEGER," + KEY_ROLE + " TEXT,"
 				+ KEY_RUNNING_MATE + " TEXT," + KEY_JENIS_KELAMIN + " TEXT,"
 				+ KEY_AGAMA + " TEXT," + KEY_TEMPAT_LAHIR + " TEXT,"
@@ -182,6 +187,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addKandidat(KandidatClass kandidat) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
+		cv.put(KEY_NAMA, kandidat.getNama());
 		cv.put(KEY_INISIAL, kandidat.getInisial());
 		cv.put(KEY_TAHUN, kandidat.getTahun());
 		cv.put(KEY_ROLE, kandidat.getRole());
@@ -204,7 +210,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	public void addRiwayatRPN(RiwayatPPClass rpp) {
+	public void addRiwayatRPN(RiwayatPNClass rpp) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_ID_KANDIDAT, rpp.getIDKandidat());
@@ -216,7 +222,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	public void addRiwayatRPK(RiwayatPPClass rpp) {
+	public void addRiwayatRPK(RiwayatPKClass rpp) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_ID_KANDIDAT, rpp.getIDKandidat());
@@ -336,7 +342,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	public void deleteRiwayatRPN(RiwayatPPClass rpp) {
+	public void deleteRiwayatRPN(RiwayatPNClass rpp) {
 		SQLiteDatabase db = getWritableDatabase();
 
 		db.delete(TBL_KANDIDAT_RPN, KEY_ID + " = ? ",
@@ -344,7 +350,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	public void deleteRiwayatRPK(RiwayatPPClass rpp) {
+	public void deleteRiwayatRPK(RiwayatPKClass rpp) {
 		SQLiteDatabase db = getWritableDatabase();
 
 		db.delete(TBL_KANDIDAT_RPK, KEY_ID + " = ? ",
@@ -403,18 +409,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public KandidatClass getKandidat(String _id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID,KEY_TAHUN, KEY_JUMLAH_ANAK, KEY_INISIAL,
+		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID,KEY_TAHUN, KEY_JUMLAH_ANAK, KEY_NAMA,KEY_INISIAL,
 				 KEY_ROLE, KEY_RUNNING_MATE, KEY_JENIS_KELAMIN, KEY_AGAMA, KEY_TEMPAT_LAHIR, KEY_TANGGAL_LAHIR, KEY_STATUS_KAWIN, KEY_NAMA_PASANGAN, KEY_KELURAHAN_TINGGAL, KEY_KECAMATAN, KEY_KOTA_TINGGAL, KEY_PROVINSI, KEY_NAMA_PARTAI, KEY_BIOGRAFI }, 
 				KEY_INISIAL + " = ?",
 				new String[] { _id }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 			Log.d("CURSOR", cursor.getString(cursor.getColumnIndex(KEY_INISIAL)));
-		//return new KandidatClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), Integer.valueOf(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16), cursor.getString(17));
-		return new KandidatClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_TAHUN)), cursor.getInt(cursor.getColumnIndex(KEY_JUMLAH_ANAK)), cursor.getString(cursor.getColumnIndex(KEY_INISIAL)), cursor.getString(cursor.getColumnIndex(KEY_ROLE)), cursor.getString(cursor.getColumnIndex(KEY_RUNNING_MATE)), cursor.getString(cursor.getColumnIndex(KEY_JENIS_KELAMIN)), cursor.getString(cursor.getColumnIndex(KEY_AGAMA)), cursor.getString(cursor.getColumnIndex(KEY_TEMPAT_LAHIR)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_LAHIR)), cursor.getString(cursor.getColumnIndex(KEY_STATUS_KAWIN)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PASANGAN)), cursor.getString(cursor.getColumnIndex(KEY_KELURAHAN_TINGGAL)), cursor.getString(cursor.getColumnIndex(KEY_KECAMATAN)), cursor.getString(cursor.getColumnIndex(KEY_KOTA)), cursor.getString(cursor.getColumnIndex(KEY_PROVINSI)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PARTAI)), cursor.getString(cursor.getColumnIndex(KEY_BIOGRAFI)));
+		//return new KandidatClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), Integer.valueOf(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12), cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16), cursor.getString(17),cursor.getString(18));
+		return new KandidatClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)),cursor.getInt(cursor.getColumnIndex(KEY_TAHUN)), cursor.getInt(cursor.getColumnIndex(KEY_JUMLAH_ANAK)), cursor.getString(cursor.getColumnIndex(KEY_NAMA)),cursor.getString(cursor.getColumnIndex(KEY_INISIAL)),cursor.getString(cursor.getColumnIndex(KEY_ROLE)),cursor.getString(cursor.getColumnIndex(KEY_RUNNING_MATE)),cursor.getString(cursor.getColumnIndex(KEY_JENIS_KELAMIN)), cursor.getString(cursor.getColumnIndex(KEY_AGAMA)), cursor.getString(cursor.getColumnIndex(KEY_TEMPAT_LAHIR)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_LAHIR)), cursor.getString(cursor.getColumnIndex(KEY_STATUS_KAWIN)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PASANGAN)), cursor.getString(cursor.getColumnIndex(KEY_KELURAHAN_TINGGAL)), cursor.getString(cursor.getColumnIndex(KEY_KECAMATAN)), cursor.getString(cursor.getColumnIndex(KEY_KOTA_TINGGAL)), cursor.getString(cursor.getColumnIndex(KEY_PROVINSI)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PARTAI)), cursor.getString(cursor.getColumnIndex(KEY_BIOGRAFI)));
 	}
+	
+	
 
-	public RiwayatPPClass getRiwayatRPN(int id) {
+	public RiwayatPNClass getRiwayatRPN(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TBL_KANDIDAT_RPN, new String[] { KEY_ID, KEY_ID_KANDIDAT,
@@ -424,10 +432,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		//return new RiwayatPPClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-		return new RiwayatPPClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
+		return new RiwayatPNClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
 	}
 	
-	public RiwayatPPClass getRiwayatRPK(int id) {
+	public RiwayatPKClass getRiwayatRPK(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TBL_KANDIDAT_RPK, new String[] { KEY_ID, KEY_ID_KANDIDAT,
@@ -437,7 +445,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		//return new RiwayatPPClass(Integer.valueOf(cursor.getString(0)), Integer.valueOf(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4));
-		return new RiwayatPPClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
+		return new RiwayatPKClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getString(cursor.getColumnIndex(KEY_ID_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_RINGKASAN)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_MULAI)), cursor.getString(cursor.getColumnIndex(KEY_TANGGAL_SELESAI)));
 	}
 	
 	public RiwayatROClass getRiwayatRO(int id) {
@@ -517,34 +525,115 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		return new KeuanganClass(cursor.getInt(cursor.getColumnIndex(KEY_ID)), cursor.getInt(cursor.getColumnIndex(KEY_TAHUN)), cursor.getInt(cursor.getColumnIndex(KEY_UANG)), cursor.getInt(cursor.getColumnIndex(KEY_NILAIBARANG)), cursor.getInt(cursor.getColumnIndex(KEY_UNITBARANG)), cursor.getInt(cursor.getColumnIndex(KEY_NILAIJASA)), cursor.getInt(cursor.getColumnIndex(KEY_JUMLAH)), cursor.getString(cursor.getColumnIndex(KEY_PERIODE)), cursor.getString(cursor.getColumnIndex(KEY_ROLE)), cursor.getString(cursor.getColumnIndex(KEY_NAMA_PARTAI)), cursor.getString(cursor.getColumnIndex(KEY_INISIAL_KANDIDAT)), cursor.getString(cursor.getColumnIndex(KEY_LEMBAGA)), cursor.getString(cursor.getColumnIndex(KEY_MATAUANG)), cursor.getString(cursor.getColumnIndex(KEY_BENTUKJASA)), cursor.getString(cursor.getColumnIndex(KEY_KETERANGAN)));
 	}
 
-	/**public ArrayList<ProfileClass> getSemuaProfile() {
-		ArrayList<ProfileClass> profileList = new ArrayList<ProfileClass>();
-
-		String selectQuery = "SELECT * FROM " + TBL_PROFILE;
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		if (cursor.moveToFirst())
-			do {
-				ProfileClass profile = new ProfileClass();
-				profile.setID(Integer.parseInt(cursor.getString(cursor
-						.getColumnIndex(KEY_ID))));
-				profile.setProfile(cursor.getString(cursor
-						.getColumnIndex(KEY_PROFILE)));
-				profile.setUname(cursor.getString(cursor
-						.getColumnIndex(KEY_UNAME)));
-
-				profileList.add(profile);
-			} while (cursor.moveToNext());
-
-		return profileList;
-	}**/
+	public List<RiwayatPNClass> getAllRiwayatPendidikan(int limit,String inisial) {
+	    List<RiwayatPNClass> pendidikanList = new ArrayList<RiwayatPNClass>();
+	    // Select All Query
+	    String selectQuery = "SELECT  * FROM " + TBL_KANDIDAT_RPN + ((inisial != null) ? " WHERE " + KEY_ID_KANDIDAT + " = '" + inisial +"' " : "")  + ((limit != 0) ? "ORDER BY id ASC LIMIT 0," + limit : "");
+	 
+	    SQLiteDatabase db = this.getWritableDatabase();
+	    Cursor cursor = db.rawQuery(selectQuery, null);
+	 
+	    // looping through all rows and adding to list
+	    if (cursor.moveToFirst()) {
+	        do {
+	            RiwayatPNClass pendidikan = new RiwayatPNClass();
+	            pendidikan.setID(cursor.getInt(0));
+	            pendidikan.setIDKandidat(cursor.getString(1));
+	            pendidikan.setRingkasan(cursor.getString(2));
+	            pendidikan.setTahunMulai(cursor.getString(3));
+	            pendidikan.setTahunSelesai(cursor.getString(4));
+	            // Adding contact to list
+	            pendidikanList.add(pendidikan);
+	        } while (cursor.moveToNext());
+	    }
+	 
+	    // return contact list
+	    return pendidikanList;
+	}
+	
+	public List<RiwayatPKClass> getAllRiwayatPekerjaan(int limit,String inisial) {
+	    List<RiwayatPKClass> pekerjaanList = new ArrayList<RiwayatPKClass>();
+	    // Select All Query
+	    String selectQuery = "SELECT  * FROM " + TBL_KANDIDAT_RPK + ((inisial != null) ? " WHERE " + KEY_ID_KANDIDAT + " = '" + inisial +"' " : "")  + ((limit != 0) ? "ORDER BY id ASC LIMIT 0," + limit : "");
+	 
+	    SQLiteDatabase db = this.getWritableDatabase();
+	    Cursor cursor = db.rawQuery(selectQuery, null);
+	 
+	    // looping through all rows and adding to list
+	    if (cursor.moveToFirst()) {
+	        do {
+	            RiwayatPKClass pekerjaan = new RiwayatPKClass();
+	            pekerjaan.setID(cursor.getInt(0));
+	            pekerjaan.setIDKandidat(cursor.getString(1));
+	            pekerjaan.setRingkasan(cursor.getString(2));
+	            pekerjaan.setTahunMulai(cursor.getString(3));
+	            pekerjaan.setTahunSelesai(cursor.getString(4));
+	            // Adding contact to list
+	            pekerjaanList.add(pekerjaan);
+	        } while (cursor.moveToNext());
+	    }
+	 
+	    // return contact list
+	    return pekerjaanList;
+	}
+	
+	public List<RiwayatROClass> getAllRiwayatOrganisasi(int limit,String inisial) {
+	    List<RiwayatROClass> organisasiList = new ArrayList<RiwayatROClass>();
+	    // Select All Query
+	    String selectQuery = "SELECT  * FROM " + TBL_KANDIDAT_RO + ((inisial != null) ? " WHERE " + KEY_ID_KANDIDAT + " = '" + inisial +"' " : "")  + ((limit != 0) ? "ORDER BY id ASC LIMIT 0," + limit: "");
+	 
+	    SQLiteDatabase db = this.getWritableDatabase();
+	    Cursor cursor = db.rawQuery(selectQuery, null);
+	 
+	    // looping through all rows and adding to list
+	    if (cursor.moveToFirst()) {
+	        do {
+	        	RiwayatROClass organisasi = new RiwayatROClass();
+	        	organisasi.setID(cursor.getInt(0));
+	        	organisasi.setIDKandidat(cursor.getString(1));
+	        	organisasi.setRingkasan(cursor.getString(2));
+	        	organisasi.setJabatan(cursor.getString(3));
+	        	organisasi.setTahunMulai(cursor.getString(4));
+	        	organisasi.setTahunSelesai(cursor.getString(5));
+	            // Adding contact to list
+	        	organisasiList.add(organisasi);
+	        } while (cursor.moveToNext());
+	    }
+	 
+	    // return contact list
+	    return organisasiList;
+	}
+	public List<RiwayatPHClass> getAllRiwayatPenghargaan(int limit,String inisial) {
+	    List<RiwayatPHClass> penghargaanList = new ArrayList<RiwayatPHClass>();
+	    // Select All Query
+	    String selectQuery = "SELECT  * FROM " + TBL_KANDIDAT_RPH + ((inisial != null) ? " WHERE " + KEY_ID_KANDIDAT + " = '" + inisial +"' " : "")  + ((limit != 0) ? "ORDER BY id ASC LIMIT 0," + limit: "");
+	 
+	    SQLiteDatabase db = this.getWritableDatabase();
+	    Cursor cursor = db.rawQuery(selectQuery, null);
+	 
+	    // looping through all rows and adding to list
+	    if (cursor.moveToFirst()) {
+	        do {
+	        	RiwayatPHClass penghargaan = new RiwayatPHClass();
+	        	penghargaan.setID(cursor.getInt(0));
+	        	penghargaan.setIDKandidat(cursor.getString(1));
+	        	penghargaan.setRingkasan(cursor.getString(2));
+	        	penghargaan.setInstitusi(cursor.getString(3));
+	        	penghargaan.setTanggal(cursor.getString(4));
+	            // Adding contact to list
+	            penghargaanList.add(penghargaan);
+	        } while (cursor.moveToNext());
+	    }
+	 
+	    // return contact list
+	    return penghargaanList;
+	}
 	
 	public void updateKandidat(KandidatClass kandidat) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_ID, kandidat.getID()); 
+		cv.put(KEY_NAMA, kandidat.getNama());
 		cv.put(KEY_INISIAL, kandidat.getInisial());
 		cv.put(KEY_TAHUN, kandidat.getTahun());
 		cv.put(KEY_ROLE, kandidat.getRole());
@@ -568,7 +657,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	public void updateRiwayatRPN(RiwayatPPClass rpp) {
+	public void updateRiwayatPN(RiwayatPNClass rpp) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_ID, rpp.getID());
@@ -582,7 +671,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	public void updateRiwayatRK(RiwayatPPClass rpp) {
+	public void updateRiwayatPK(RiwayatPKClass rpp) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_ID, rpp.getID());
@@ -704,24 +793,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	public boolean kandidatExists(Integer _id) {
+	public boolean kandidatExists(String _id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID }, "ID = ?",
-				new String[] { String.valueOf(_id) }, null, null, null, null);
+		Cursor cursor = db.query(TBL_KANDIDAT, new String[] { KEY_ID }, KEY_INISIAL + " = ?",
+				new String[] { _id }, null, null, null, null);
 		boolean exists = (cursor.getCount() > 0);
 		cursor.close();
 		return exists;
 	}
-
-	public boolean RiwayatRPNExists(Integer _id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TBL_KANDIDAT_RPN, new String[] { KEY_ID },
-				"ID = ?", new String[] { String.valueOf(_id) }, null, null,
-				null, null);
-		boolean exists = (cursor.getCount() > 0);
-		cursor.close();
-		return exists;
-	}
+	
+	public int getTableCounts(String table) {
+        String countQuery = "SELECT  * FROM " + table;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+ 
+        // return count
+        return count;
+    }
 }

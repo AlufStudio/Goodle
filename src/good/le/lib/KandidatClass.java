@@ -2,16 +2,17 @@ package good.le.lib;
 
 public class KandidatClass {
 	int id,tahun,jumlah_anak;
-	String inisial,role,running_mate,jenis_kelamin,agama,tempat_lahir,tanggal_lahir,status_kawin,nama_pasangan,kelurahan,kecamatan,kota,provinsi,nama_partai,biografi;
+	String nama,inisial,role,running_mate,jenis_kelamin,agama,tempat_lahir,tanggal_lahir,status_kawin,nama_pasangan,kelurahan,kecamatan,kota,provinsi,nama_partai,biografi;
 	
 	public KandidatClass(){
 		
 	}
 	
-	public KandidatClass(int id,int tahun,int jumlah_anak,String inisial,String role,String running_mate,String jenis_kelamin,String agama,String tempat_lahir,String tanggal_lahir,String status_kawin,String nama_pasangan,String kelurahan,String kecamatan,String kota,String provinsi,String nama_partai,String biografi){
+	public KandidatClass(int id,int tahun,int jumlah_anak,String nama,String inisial,String role,String running_mate,String jenis_kelamin,String agama,String tempat_lahir,String tanggal_lahir,String status_kawin,String nama_pasangan,String kelurahan,String kecamatan,String kota,String provinsi,String nama_partai,String biografi){
 		this.id = id;
 		this.tahun = tahun;
 		this.jumlah_anak = jumlah_anak;
+		this.nama = nama;
 		this.inisial = inisial;
 		this.role = role;
 		this.running_mate = running_mate;
@@ -29,9 +30,10 @@ public class KandidatClass {
 		this.biografi = biografi;
 	}
 	
-	public KandidatClass(int tahun,int jumlah_anak,String inisial,String role,String running_mate,String jenis_kelamin,String agama,String tempat_lahir,String tanggal_lahir,String status_kawin,String nama_pasangan,String kelurahan,String kecamatan,String kota,String provinsi,String nama_partai,String biografi){
+	public KandidatClass(int tahun,int jumlah_anak,String nama,String inisial,String role,String running_mate,String jenis_kelamin,String agama,String tempat_lahir,String tanggal_lahir,String status_kawin,String nama_pasangan,String kelurahan,String kecamatan,String kota,String provinsi,String nama_partai,String biografi){
 		this.tahun = tahun;
 		this.jumlah_anak = jumlah_anak;
+		this.nama = nama;
 		this.inisial = inisial;
 		this.role = role;
 		this.running_mate = running_mate;
@@ -71,6 +73,14 @@ public class KandidatClass {
 	
 	public void setJumlahAnak(int jumlah_anak){
 		this.jumlah_anak = jumlah_anak;
+	}
+	
+	public String getNama(){
+		return this.nama;
+	}
+	
+	public void setNama(String nama){
+		this.nama = nama;
 	}
 	
 	public String getInisial(){

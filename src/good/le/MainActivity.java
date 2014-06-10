@@ -8,7 +8,7 @@ import good.le.lib.KandidatClass;
 import good.le.lib.KeuanganClass;
 import good.le.lib.PelanggaranClass;
 import good.le.lib.RiwayatPHClass;
-import good.le.lib.RiwayatPPClass;
+import good.le.lib.RiwayatPKClass;
 import good.le.lib.RiwayatROClass;
 
 import org.json.JSONArray;
